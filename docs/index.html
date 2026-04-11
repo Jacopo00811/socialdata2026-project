@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Drug That Is Taking Over Them All — San Francisco's Dramatic Situation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ── Reset & base ────────────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 300;
+            line-height: 1.75;
+            color: #2c2c2c;
+            background: #fafaf7;
+        }
+
+        /* ── Typography ──────────────────────────────────────────────── */
+        h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; }
+        h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; }
+        h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 0.6em; color: #1a1a1a; }
+        h3 { font-size: 1.15rem; margin-bottom: 0.4em; }
+        p  { margin-bottom: 1.2em; font-size: 1.08rem; }
+        a  { color: #b5413b; text-decoration: none; border-bottom: 1px solid rgba(181,65,59,0.3); }
+        a:hover { border-bottom-color: #b5413b; }
+        strong { font-weight: 600; }
+
+        /* ── Layout ──────────────────────────────────────────────────── */
+        .container { max-width: 820px; margin: 0 auto; padding: 0 1.5rem; }
+        .wide-container { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* ── Hero ────────────────────────────────────────────────────── */
+        .hero {
+            min-height: 80vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center;
+            padding: 4rem 1.5rem;
+            background: linear-gradient(170deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+        }
+        .hero h1 { margin-bottom: 0.5em; }
+        .hero .subtitle {
+            font-size: 1.2rem; font-weight: 300;
+            opacity: 0.85; max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        .hero .byline {
+            font-size: 0.9rem; opacity: 0.6;
+            letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .scroll-hint {
+            margin-top: 3rem;
+            animation: bounce 2s ease infinite;
+            opacity: 0.5; font-size: 1.6rem;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* ── Sections ────────────────────────────────────────────────── */
+        .section {
+            padding: 4rem 0;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-alt { background: #f0efe9; }
+
+        .lead-text {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #444;
+            border-left: 4px solid #b5413b;
+            padding-left: 1.2em;
+            margin: 2rem 0;
+        }
+
+        /* ── Figure containers ───────────────────────────────────────── */
+        .figure-block {
+            margin: 2.5rem 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+        .figure-block img {
+            width: 100%;
+            display: block;
+        }
+        .figure-block iframe {
+            width: 100%;
+            height: 580px;
+            border: none;
+            display: block;
+        }
+        .figure-caption {
+            padding: 1rem 1.5rem 1.2rem;
+            font-size: 0.92rem;
+            color: #555;
+            border-top: 1px solid #eee;
+            line-height: 1.6;
+        }
+        .figure-caption strong {
+            color: #333;
+        }
+
+        /* ── Callout box ─────────────────────────────────────────────── */
+        .callout {
+            background: #fff8f0;
+            border-left: 4px solid #e6973e;
+            padding: 1.2rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.98rem;
+        }
+        .callout-critical {
+            background: #fef2f2;
+            border-left-color: #b5413b;
+        }
+
+        /* ── Stats row ───────────────────────────────────────────────── */
+        .stats-row {
+            display: flex;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            flex: 1; min-width: 180px;
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem; font-weight: 900;
+            color: #b5413b;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.85rem; color: #777;
+            margin-top: 0.4rem;
+        }
+
+        /* ── References ──────────────────────────────────────────────── */
+        .references {
+            font-size: 0.88rem;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+        }
+        .references ol { padding-left: 1.5em; }
+        .references li { margin-bottom: 0.8em; line-height: 1.5; }
+
+        /* ── Footer ──────────────────────────────────────────────────── */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.85rem;
+            color: #999;
+            background: #1a1a2e;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ── Map specific ────────────────────────────────────────────── */
+        .map-frame { height: 650px; }
+
+        /* ── Responsive ──────────────────────────────────────────────── */
+        @media (max-width: 600px) {
+            .stats-row { flex-direction: column; }
+            .figure-block iframe { height: 420px; }
+            .map-frame { height: 450px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- HERO                                                                    -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<header class="hero">
+    <h1>The Drug That Is Taking Over Them All</h1>
+    <p class="subtitle">
+        How opioids, particularly fentanyl, are reshaping San Francisco's drug landscape. Why more policing may not be the answer?
+    </p>
+    <p class="byline">A data story based on San Francisco Police Department incident reports from 2003 to 2025</p>
+    <div class="scroll-hint">&#8595;</div>
+</header>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 1: CONTEXT                                                      -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="section">
+    <div class="container">
+        <h2>Setting the Scene</h2>
+        <p>
+            San Francisco has long wrestled with drug-related crime, but the trends you see in media
+            headlines can be deceptive. To understand what's actually changed, we looked at every drug
+            offense logged by the San Francisco Police Department from 2003 to early 2025. That's around
+            <strong>150,000 incidents</strong> spanning more than two decades.
+        </p>
+        <p>
+            Data comes from two publicly available SFPD datasets: the historical reports
+            (2003-2018) and the modern one (2018-present), merged and cleaned for consistency.
+            Each record tells us <em>what drug</em> was involved, and <em>when and where</em> the
+            incident happened<sup><a href="#ref1">[1]</a></sup>.
+        </p>
+
+        <div class="callout">
+            <strong>An important caveat:</strong> Police incident data reflects the <em>police activity</em>,
+            not actual drug use and distribution. Therefore, as Richardson et al.<sup><a href="#ref2">[2]</a></sup> remind us, an increase in "cocaine offenses" 
+            might not mean more cocaine, it might just be that the police ran a cocaine-focused operation in those times.
+            <br />
+            <u>Crime data is always shaped by the choices of the institution collecting it.</u>
+        </div>
+        <p>
+            With that in mind, the story, spanning 22 years, focuses on five major drug
+            categories dominated SFPD reports: <strong>cocaine</strong>, <strong>marijuana</strong>,
+            <strong>methamphetamine</strong>, <strong>heroin</strong>, and a <strong>"opiates"</strong>.
+            That last category is the key to this story and what is effecting the city the most. In particular
+            this category includes <strong>fentanyl</strong>, a powerful synthetic opioid that has been zombifying 
+            its users and causing an increase in overdose deaths in the city. The situation reached such a critical state
+            that the mayor had to declare a state of emergency for the Tenderloin district<sup><a href="#ref3">[3]</a></sup>. 
+        </p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 2: THE BIG PICTURE (VIZ 1)                                      -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+    <div class="container">
+        <h2>The Great Reshuffle</h2>
+        <p>
+            The chart below shows how the composition of drug offenses has transformed over time.
+            Each band represents one drug category's share of all SFPD drug incidents that year. 
+            Also marked on the graph are key policy milestones: the 2016 marijuana legalization,
+            the time when fentanyl began to surge, and the 2021 Tenderloin emergency declaration<sup><a href="#ref3">[3]</a></sup>.
+            <br />
+            <mark>Note how some crime reports might classify fentanyl as part of the "Narcotics (general)" category as it is indeed a narcotic 
+            drug used for its analgesic properties.</mark>
+        </p>
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <iframe src="visualizations/drug_composition_shift.html"
+                    title="Stacked area chart showing the percentage share of five major drug types in SFPD drug offenses from 2003 to 2025"></iframe>
+            <div class="figure-caption">
+                <strong>Figure 1.</strong> Percentage share of five major drug categories in all SFPD drug-offense
+                incidents, 2003-2025. Cocaine (amber) and marijuana (blue) dominated until the late 2010s.
+                After marijuana legalization in 2016, cannabis offenses nearly vanished. Meanwhile, synthetic drugs like
+                Opiates (pink) and Methamphetamine (green) barely were reported before 2010, and then became the fastest-growing 
+                categories until 2021-2022. 
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <p class="lead-text">
+            In 2006, cocaine alone accounted for nearly 40% of all drug offenses.
+            By 2023, the "Opiates" category, without counting the general Narcotics category, has surged from under 1% to over 16%.
+        </p>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-number">13&times;</div>
+                <div class="stat-label">increase in Opiates incident category reports<br>(2017 → 2023)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">&minus;85%</div>
+                <div class="stat-label">decline in Heroin<br>incidents since 2009</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">&minus;80%</div>
+                <div class="stat-label">decline in Cocaine<br>incidents since 2009</div>
+            </div>
+        </div>
+
+        <p>
+            The crossover to new drugs is unprecedented: as heroin, marijuana and cocaine incidents collapsed,
+            opiates and narcotics exploded accounting for a total of 63.6% of total reported drug offenses in 2025. This mirrors what
+            public health researchers have documented: illicitly manufactured fentanyl and other synthetic narcotics entered San
+            Francisco's drug supply around 2019<sup><a href="#ref4">[4]</a></sup>, rapidly replacing heroin and other drugs on the streets. 
+        </p>
+        <p>
+            According to the San Francisco Office of the Chief Medical Examiner, of the 1,833
+            opioid-involved overdose deaths between 2020 and 2023, <strong>1,686 (92%) tested positive
+            for fentanyl or a fentanyl analog</strong><sup><a href="#ref6">[6]</a></sup>.
+        </p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 3: DISTRICT EXPLORER (VIZ 2)                                    -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="section">
+    <div class="container">
+        <h2>Not Every Neighborhood Tells the Same Story</h2>
+        <p>
+            San Francisco is a relatively small but its drug landscape varies dramatically
+            from neighborhood to neighborhood. Use the dropdown below to explore how each police
+            district's drug mix has evolved throughout the years. 
+        </p>
+        <p>
+            <strong>Start with the Tenderloin</strong>, the default view: here the opiates surge is extreme.
+            Then switch to <strong>Mission</strong>, that once was one of the cocaine  hotspots of San Francisco.
+            Try <strong>Richmond</strong> or <strong>Taraval</strong> to see
+            districts where drug offenses barely register at all.
+        </p>
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <iframe src="visualizations/district_drug_explorer.html"
+                    title="Interactive chart: Drug offense trends by police district"></iframe>
+            <div class="figure-caption">
+                <strong>Figure 2.</strong> Drug offense trends by SFPD police district, 2003-2025. Use the
+                dropdown (top-left) to select a district. Each line represents one major drug type.
+                Tenderloin shows the most dramatic opiates surge; Mission shows cocaine's long
+                decline. Outer districts like Richmond or Taraval have consistently low numbers across
+                all categories, highlighting how concentrated the crisis is. The Y-axis can be toggled
+                (top-right) between auto scale axis and fixed axis to show the relative magnitude for the
+                Tenderloin vs the other districts.
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <p>
+            The district-level view reveals something the citywide chart obscures: the opioid crisis
+            is not a San Francisco-wide phenomenon, it is a <strong>Tenderloin phenomenon</strong>.
+            Of all opiate and narcotics related incidents since 2020, the majority occurred in the Tenderloin district alone,
+            followed by Mission, and Southern. The remaining seven districts share a combined minimal fraction of incident reports.
+        </p>
+    </div>
+    
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 4: THE MAP (VIZ 3)                                              -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+    <div class="container">
+        <h2>Watch It Happen: The Geographic Concentration</h2>
+        <p>
+            The animated heatmap below plots every opiate and narcotics incident from 2003 to 2025.
+            Press play and watch the heat signature shift: in the early years, opioid incidents are
+            scattered across the Mission, Bayview, and Tenderloin. By the 2020s, the heat intensifies
+            and contracts into a tight cluster around the Tenderloin and adjacent neighborhoods.
+        </p>
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <iframe class="map-frame" src="visualizations/opioid_narcotics_single_timeline_map.html"
+                    title="Animated heatmap of opioid incidents across San Francisco, 2003-2025"></iframe>
+            <div class="figure-caption">
+                <strong>Figure 3.</strong> Animated heatmap of opioid-related incidents in San Francisco,
+                 2003-2025. Each frame represents one year. In the early period, incidents
+                are spread across multiple neighborhoods (Mission, Bayview, Tenderloin). By 2020-2025,
+                the heat signature has contracted sharply into the Tenderloin, reflecting both the
+                fentanyl supply shift and intensified enforcement in that area.
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 5: CRITICAL DISCUSSION                                          -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="section">
+    <div class="container">
+        <h2>Does More Enforcement Help?</h2>
+        <p>
+            The surge in opiate incidents after 2019 coincides with a major escalation in drug
+            enforcement. After December 2021, when the Mayor declared a state of emergency in the Tenderloin, 
+            in early 2022 the District Attorney implemented new policies to "bundle misdemeanor drug
+            possession charges"<sup><a href="#ref8">[8]</a></sup>. In 2023, the California Governor authorized a multiagency operation
+            specifically targeting fentanyl trafficking<sup><a href="#ref9">[9]</a></sup>.
+        </p>
+
+        <div class="callout callout-critical">
+            <strong>The paradox:</strong> A 2025 study published in <em>JAMA Network Open</em> found that
+            law enforcement drug seizures in San Francisco were associated with a <strong>74% increase</strong>
+            in the relative risk of a fatal opioid overdose within 100 meters the day after the seizure. 
+            The elevated risk persisted for up to 7 days<sup><a href="#ref4">[4]</a></sup>.
+        </div>
+
+        <p>
+            How can seizing drugs <em>increase</em> overdose deaths? The researchers propose a mechanism:
+            when police arrest a dealer and seize their supply, the people who depended on that dealer
+            — many of whom are physically dependent on opioids — must urgently find a new source. The
+            replacement drugs may be more potent, differently composed, or simply unfamiliar,
+            dramatically increasing overdose risk<sup><a href="#ref6">[6]</a></sup>.
+        </p>
+        <p>
+            As the FilterMag summary of this research puts it: <em>"To our knowledge, no evidence-based
+            approach exists that shows supply-side interventions, such as policing and seizing drugs,
+            reduces drug use or drug-related health problems"</em>
+            <sup><a href="#ref5">[5]</a></sup>.
+        </p>
+        <p>
+            The researchers recommend evidence-based alternatives: easier access to medications for opioid
+            use disorder, safe supply programs, drug decriminalization, and supervised consumption sites —
+            all of which have been shown to reduce overdose deaths without increasing crime
+            <sup><a href="#ref6">[6]</a></sup>. One often-cited example is Portugal, which in 2001 decriminalized
+            the possession of small amounts of drugs and shifted its approach toward treatment and harm reduction
+            rather than punishment. Individuals are referred to “dissuasion commissions” composed of health and
+            social work professionals instead of entering the criminal justice system.
+        </p>
+
+        <p>
+            This reform was paired with increased investment in addiction treatment and public health services.
+            In the years following the policy change, Portugal experienced significant reductions in overdose deaths
+            and HIV transmission, while overall drug use did not increase
+            <sup><a href="#ref10">[10]</a></sup>. The case suggests that reducing harm does not necessarily depend
+            on eliminating drug use, but on making drug use less dangerous.
+        </p>
+
+        <p>
+            Whether San Francisco adopts such approaches remains uncertain, but the data suggests that continuing to rely on enforcement alone may not be enough.
+        </p>
+
+        <h3>What the data can — and can't — tell us</h3>
+        <p>
+            It's important to be transparent about limitations. The explosion of "opiates" in SFPD data
+            could partly reflect <em>more enforcement</em> rather than <em>more drug use</em>. The
+            Tenderloin emergency declaration almost certainly increased the volume of police contacts in
+            that neighborhood. As discussed by Richardson et al.<sup><a href="#ref2">[2]</a></sup>, 
+            arrest data is shaped by policing priorities. A neighborhood where police are sent more often will generate more
+            incident reports, regardless of whether actual drug use has increased.
+        </p>
+        <p>
+        <blockquote style="border-left: 5px solid #d32f2f; padding-left: 15px; font-style: italic; margin: 20px 0;">
+            However, <strong>dead bodies cannot be explained by policing strategy changes.</strong> 
+            The fact that 92% of opioid overdose deaths in recent years involved fentanyl 
+            <sup><a href="#ref7">[7]</a></sup> confirms what the police data suggests: 
+            Fentanyl is transforming San Francisco's drug landscape.
+        </blockquote>
+        </p>
+
+        <p>
+            Taken together, the data and the public health evidence point to the same conclusion:
+            San Francisco's drug crisis has not simply intensified — it has fundamentally changed.
+            Cocaine, heroin, and marijuana, which dominated the streets for decades, have been
+            displaced in just a few years by fentanyl, a synthetic opioid far more potent and far
+            more deadly than anything that came before it.
+        </p>
+
+        <p>
+            Understanding this transformation is essential. Because if the nature of the crisis has changed,
+            the response to it must change as well.
+        </p>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- REFERENCES                                                              -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="section">
+    <div class="container">
+        <div class="references">
+            <h3>References</h3>
+            <ol>
+                <li id="ref1">
+                    San Francisco Police Department. "Incident Reports (2003-present)."
+                    <a href="https://data.sfgov.org/"
+                       target="_blank" rel="noopener">DataSF Open Data</a>
+                </li>
+                <li id="ref2">
+                    Richardson, Schultz, Crawford. "Dirty Data, Bad Predictions: How Civil Rights Violations Impact Police Data, Predictive Policing Systems, and Justice." <em>New York University Law Review</em>, 94(4), 2020.
+                    <a href="https://www.nyulawreview.org/wp-content/uploads/2019/04/NYULawReview-94-Richardson_etal-FIN.pdf"
+                       target="_blank" rel="noopener">Richardson et al</a>.
+                </li>
+                <li id="ref3">
+                    San Francisco Chronicle. (2021). "San Francisco mayor declares neighborhood state of emergency amid overdose deaths" <em>The Guardian</em>.
+                    <a href="https://www.theguardian.com/us-news/2021/dec/17/san-francisco-state-of-emergency-drug-overdose-deaths"
+                       target="_blank" rel="noopener">theguardian.com</a>
+                </li>
+                <li id="ref4">
+                    Jacob Sullum (2025).
+                    "A New Study Adds to the Evidence That Drug Busts Result in More Overdose Deaths."
+                    <a href="https://reason.com/2025/03/20/a-new-study-adds-to-the-evidence-that-drug-busts-result-in-more-overdose-deaths/"
+                       target="_blank" rel="noopener">reason.com</a>
+                </li>
+                <li id="ref5">
+                    Farley, R. (2025). "New federally funded research examining drug policing and
+                    overdose data out of San Francisco." <em>Filter Magazine</em>.
+                    <a href="https://filtermag.org/san-francisco-police-drug-seizures-overdose/"
+                       target="_blank" rel="noopener">filtermag.org</a>
+                </li>
+                <li id="ref6">
+                    Kral, A. H., Humphrey, J. L., Schwab, C., Lambdin, B. H., &amp; Ray, B. (2025).
+                    "Law Enforcement Drug Seizures and Opioid-Involved Overdose Mortality."
+                    <em>JAMA Network Open</em>, 8(3), e251158.
+                    <a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2831697"
+                       target="_blank" rel="noopener">doi:10.1001/jamanetworkopen.2025.1158</a>
+                </li>
+                <li id="ref7">
+                    San Francisco Office of the Chief Medical Examiner. "Accidental Overdose Reports."
+                    <a href="https://www.sf.gov/resource--2020--ocme-accidental-overdose-reports"
+                       target="_blank" rel="noopener">sf.gov</a>
+                </li>
+                <li id="ref8">
+                    San Francisco District Attorney's Office. (2022). "District Attorney Brooke Jenkins Announces New Misdemeanor Drug Policy to Help Drug Users Get Treatment."
+                    <a href="https://sfdistrictattorney.org/district-attorney-brooke-jenkins-announces-new-misdemeanor-drug-policy-to-help-drug-users-get-treatment/"
+                       target="_blank" rel="noopener">sfdistrictattorney.org</a>
+                </li>
+                <li id="ref9">
+                    California Governor. (2023). "CHP Expansion."
+                    <a href="https://www.gov.ca.gov/2023/06/29/chp-expansion/"
+                       target="_blank" rel="noopener">gov.ca.gov</a>
+                </li>
+                <li id="ref10">
+                    Rêgo, X., Oliveira, M. J., Lameira, C., &amp; Cruz, O. S. (2021).
+                    "20 years of Portuguese drug policy – developments, challenges and the quest for human rights."
+                    <em>Substance Abuse Treatment, Prevention, and Policy</em>.
+                    <a href="https://substanceabusepolicy.biomedcentral.com/articles/10.1186/s13011-021-00394-7"
+                    target="_blank" rel="noopener">biomedcentral.com</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- FOOTER                                                                  -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<footer>
+    <p>
+        Social Data Analysis &amp; Visualization — DTU, Spring 2026<br>
+        Data: SFPD Incident Reports via DataSF &middot;
+        Built with Plotly, Folium &amp; Python
+    </p>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SCROLL ANIMATION SCRIPT                                                 -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.12 });
+        sections.forEach(s => observer.observe(s));
+    });
+</script>
+
+</body>
+</html>
