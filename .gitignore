@@ -1,4 +1,3 @@
-data/
 # Environment variables / secrets
 .env
 
@@ -211,4 +210,5 @@ marimo/_lsp/
 __marimo__/
 
 # Custom
-*.csv
+data/*
+!data/*.csv

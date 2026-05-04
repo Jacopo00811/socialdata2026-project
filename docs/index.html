@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Drug That Is Taking Over Them All — San Francisco's Dramatic Situation</title>
+    <title>The Paradox of Happiness — Why the Happiest Countries Are the Most Medicated</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* ── Reset & base ────────────────────────────────────────────── */
@@ -97,10 +97,17 @@
         }
         .figure-block iframe {
             width: 100%;
-            height: 580px;
+            height: 620px;
             border: none;
             display: block;
         }
+        .frame-bars   { height: 720px; }
+        .frame-bump   { height: 880px; }
+        .frame-pca    { height: 550px; }
+        .frame-geo    { height: 580px; }
+        .frame-anim   { height: 660px; }
+        .frame-bubble { height: 710px; }
+        .map-frame    { height: 620px; }
         .figure-caption {
             padding: 1rem 1.5rem 1.2rem;
             font-size: 0.92rem;
@@ -174,12 +181,13 @@
         }
 
         /* ── Map specific ────────────────────────────────────────────── */
-        .map-frame { height: 650px; }
 
         /* ── Responsive ──────────────────────────────────────────────── */
         @media (max-width: 600px) {
             .stats-row { flex-direction: column; }
             .figure-block iframe { height: 420px; }
+            .frame-bars, .frame-bump, .frame-anim,
+            .frame-bubble, .frame-pca { height: 420px; }
             .map-frame { height: 450px; }
         }
     </style>
@@ -190,273 +198,388 @@
 <!-- HERO                                                                    -->
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <header class="hero">
-    <h1>The Drug That Is Taking Over Them All</h1>
+    <h1>The Paradox of Happiness</h1>
     <p class="subtitle">
-        How opioids, particularly fentanyl, are reshaping San Francisco's drug landscape. Why more policing may not be the answer?
+        Why do the happiest countries in Europe consume the most antidepressants?
+        A data-driven investigation across 21 nations.
     </p>
-    <p class="byline">A data story based on San Francisco Police Department incident reports from 2003 to 2025</p>
+    <p class="byline">Social Data Analysis &amp; Visualization · DTU 2026</p>
     <div class="scroll-hint">&#8595;</div>
 </header>
 
 <!-- ════════════════════════════════════════════════════════════════════════ -->
-<!-- SECTION 1: CONTEXT                                                      -->
+<!-- SECTION 1: THE PARADOX AT A GLANCE                                      -->
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section">
     <div class="container">
-        <h2>Setting the Scene</h2>
+        <h2>The Paradox at a Glance</h2>
         <p>
-            San Francisco has long wrestled with drug-related crime, but the trends you see in media
-            headlines can be deceptive. To understand what's actually changed, we looked at every drug
-            offense logged by the San Francisco Police Department from 2003 to early 2025. That's around
-            <strong>150,000 incidents</strong> spanning more than two decades.
+            Finland, Denmark, Iceland, Norway, Sweden — year after year, these Nordic nations top the
+            <strong>World Happiness Report</strong>. Their citizens report the highest life satisfaction
+            on Earth. And yet, these same countries also lead the OECD in <strong>antidepressant
+            consumption</strong>, prescribing up to 140 defined daily doses per 1,000 people every single day.
         </p>
         <p>
-            Data comes from two publicly available SFPD datasets: the historical reports
-            (2003-2018) and the modern one (2018-present), merged and cleaned for consistency.
-            Each record tells us <em>what drug</em> was involved, and <em>when and where</em> the
-            incident happened<sup><a href="#ref1">[1]</a></sup>.
+            This is the <em>Paradox of Happiness</em>: the places where people say they are happiest are
+            also where they take the most medication for depression. Are the happiness rankings a lie?
+            Are these countries hiding collective misery behind a pharmaceutical veil? Or is something
+            more subtle at work?
         </p>
-
-        <div class="callout">
-            <strong>An important caveat:</strong> Police incident data reflects the <em>police activity</em>,
-            not actual drug use and distribution. Therefore, as Richardson et al.<sup><a href="#ref2">[2]</a></sup> remind us, an increase in "cocaine offenses" 
-            might not mean more cocaine, it might just be that the police ran a cocaine-focused operation in those times.
-            <br />
-            <u>Crime data is always shaped by the choices of the institution collecting it.</u>
-        </div>
         <p>
-            With that in mind, the story, spanning 22 years, focuses on five major drug
-            categories dominated SFPD reports: <strong>cocaine</strong>, <strong>marijuana</strong>,
-            <strong>methamphetamine</strong>, <strong>heroin</strong>, and a <strong>"opiates"</strong>.
-            That last category is the key to this story and what is effecting the city the most. In particular
-            this category includes <strong>fentanyl</strong>, a powerful synthetic opioid that has been zombifying 
-            its users and causing an increase in overdose deaths in the city. The situation reached such a critical state
-            that the mayor had to declare a state of emergency for the Tenderloin district<sup><a href="#ref3">[3]</a></sup>. 
+            To investigate, we assembled data on <strong>21 European countries</strong> from four sources:
+            the World Happiness Report (2015–2020), World Bank GINI coefficients (inequality),
+            World Bank unemployment rates, and OECD antidepressant prescription statistics. We averaged
+            across years to capture structural patterns rather than year-to-year noise.
         </p>
-    </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════════════════════ -->
-<!-- SECTION 2: THE BIG PICTURE (VIZ 1)                                      -->
-<!-- ════════════════════════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-    <div class="container">
-        <h2>The Great Reshuffle</h2>
         <p>
-            The chart below shows how the composition of drug offenses has transformed over time.
-            Each band represents one drug category's share of all SFPD drug incidents that year. 
-            Also marked on the graph are key policy milestones: the 2016 marijuana legalization,
-            the time when fentanyl began to surge, and the 2021 Tenderloin emergency declaration<sup><a href="#ref3">[3]</a></sup>.
-            <br />
-            <mark>Note how some crime reports might classify fentanyl as part of the "Narcotics (general)" category as it is indeed a narcotic 
-            drug used for its analgesic properties.</mark>
+            The chart below makes the paradox unmistakable. On the left, countries ranked by happiness.
+            On the right, the same countries ranked by antidepressant usage. Notice how the red bars —
+            the Scandinavian nations — cluster near the top of <em>both</em> lists.
         </p>
     </div>
     <div class="wide-container">
         <div class="figure-block">
-            <iframe src="visualizations/drug_composition_shift.html"
-                    title="Stacked area chart showing the percentage share of five major drug types in SFPD drug offenses from 2003 to 2025"></iframe>
+            <iframe class="frame-bars" src="visualizations/happiness_vs_antidepressants_bars.html"
+                    title="Side-by-side bar chart: Happiness vs Antidepressant usage"></iframe>
             <div class="figure-caption">
-                <strong>Figure 1.</strong> Percentage share of five major drug categories in all SFPD drug-offense
-                incidents, 2003-2025. Cocaine (amber) and marijuana (blue) dominated until the late 2010s.
-                After marijuana legalization in 2016, cannabis offenses nearly vanished. Meanwhile, synthetic drugs like
-                Opiates (pink) and Methamphetamine (green) barely were reported before 2010, and then became the fastest-growing 
-                categories until 2021-2022. 
+                <strong>Figure 1.</strong> Countries sorted independently by Happiness (left) and
+                Antidepressant usage in DDD/1,000/day (right). <span style="color:#e15759">Red</span> = Scandinavian countries.
+                Iceland, the happiest and most medicated, leads both charts. Latvia and Lithuania sit at the bottom of both.
+                <br><small style="color:#666;"><strong>DDD</strong> (Defined Daily Dose) is the WHO standard unit for drug consumption. A value of 50 DDD/1,000/day means 50 out of every 1,000 people take one full maintenance dose of an antidepressant on any given day.</small>
             </div>
         </div>
     </div>
     <div class="container">
-        <p class="lead-text">
-            In 2006, cocaine alone accounted for nearly 40% of all drug offenses.
-            By 2023, the "Opiates" category, without counting the general Narcotics category, has surged from under 1% to over 16%.
-        </p>
-
         <div class="stats-row">
             <div class="stat-card">
-                <div class="stat-number">13&times;</div>
-                <div class="stat-label">increase in Opiates incident category reports<br>(2017 → 2023)</div>
+                <div class="stat-number">R = 0.45</div>
+                <div class="stat-label">Positive correlation between<br>Happiness &amp; Antidepressant use</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">&minus;85%</div>
-                <div class="stat-label">decline in Heroin<br>incidents since 2009</div>
+                <div class="stat-number">8&times;</div>
+                <div class="stat-label">Range in antidepressant use<br>(Latvia 16 &rarr; Iceland 140 DDD)</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">&minus;80%</div>
-                <div class="stat-label">decline in Cocaine<br>incidents since 2009</div>
+                <div class="stat-number">21</div>
+                <div class="stat-label">European countries<br>in our analysis</div>
             </div>
         </div>
-
         <p>
-            The crossover to new drugs is unprecedented: as heroin, marijuana and cocaine incidents collapsed,
-            opiates and narcotics exploded accounting for a total of 63.6% of total reported drug offenses in 2025. This mirrors what
-            public health researchers have documented: illicitly manufactured fentanyl and other synthetic narcotics entered San
-            Francisco's drug supply around 2019<sup><a href="#ref4">[4]</a></sup>, rapidly replacing heroin and other drugs on the streets. 
-        </p>
-        <p>
-            According to the San Francisco Office of the Chief Medical Examiner, of the 1,833
-            opioid-involved overdose deaths between 2020 and 2023, <strong>1,686 (92%) tested positive
-            for fentanyl or a fentanyl analog</strong><sup><a href="#ref6">[6]</a></sup>.
+            A correlation of R = 0.45 is not trivial. It means that, on average, every step up in
+            national happiness is associated with <em>more</em> antidepressant prescriptions — the exact
+            opposite of what naive intuition would predict. Let's dig deeper into the data to understand why.
         </p>
     </div>
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════════════ -->
-<!-- SECTION 3: DISTRICT EXPLORER (VIZ 2)                                    -->
-<!-- ════════════════════════════════════════════════════════════════════════ -->
-<section class="section">
-    <div class="container">
-        <h2>Not Every Neighborhood Tells the Same Story</h2>
-        <p>
-            San Francisco is a relatively small but its drug landscape varies dramatically
-            from neighborhood to neighborhood. Use the dropdown below to explore how each police
-            district's drug mix has evolved throughout the years. 
-        </p>
-        <p>
-            <strong>Start with the Tenderloin</strong>, the default view: here the opiates surge is extreme.
-            Then switch to <strong>Mission</strong>, that once was one of the cocaine  hotspots of San Francisco.
-            Try <strong>Richmond</strong> or <strong>Taraval</strong> to see
-            districts where drug offenses barely register at all.
-        </p>
-    </div>
-    <div class="wide-container">
-        <div class="figure-block">
-            <iframe src="visualizations/district_drug_explorer.html"
-                    title="Interactive chart: Drug offense trends by police district"></iframe>
-            <div class="figure-caption">
-                <strong>Figure 2.</strong> Drug offense trends by SFPD police district, 2003-2025. Use the
-                dropdown (top-left) to select a district. Each line represents one major drug type.
-                Tenderloin shows the most dramatic opiates surge; Mission shows cocaine's long
-                decline. Outer districts like Richmond or Taraval have consistently low numbers across
-                all categories, highlighting how concentrated the crisis is. The Y-axis can be toggled
-                (top-right) between auto scale axis and fixed axis to show the relative magnitude for the
-                Tenderloin vs the other districts.
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <p>
-            The district-level view reveals something the citywide chart obscures: the opioid crisis
-            is not a San Francisco-wide phenomenon, it is a <strong>Tenderloin phenomenon</strong>.
-            Of all opiate and narcotics related incidents since 2020, the majority occurred in the Tenderloin district alone,
-            followed by Mission, and Southern. The remaining seven districts share a combined minimal fraction of incident reports.
-        </p>
-    </div>
-    
-</section>
-
-<!-- ════════════════════════════════════════════════════════════════════════ -->
-<!-- SECTION 4: THE MAP (VIZ 3)                                              -->
+<!-- SECTION 2: THE DATA                                                     -->
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section section-alt">
     <div class="container">
-        <h2>Watch It Happen: The Geographic Concentration</h2>
+        <h2>Understanding the Landscape</h2>
         <p>
-            The animated heatmap below plots every opiate and narcotics incident from 2003 to 2025.
-            Press play and watch the heat signature shift: in the early years, opioid incidents are
-            scattered across the Mission, Bayview, and Tenderloin. By the 2020s, the heat intensifies
-            and contracts into a tight cluster around the Tenderloin and adjacent neighborhoods.
+            Before searching for explanations, we need to understand what we're working with.
+            The distributions below reveal the spread of our four metrics across 21 nations.
+            Happiness is relatively concentrated (most countries between 6 and 7.5), but
+            antidepressant use spans an enormous range — from barely 16 DDD/1,000/day in Latvia
+            to a staggering 140 in Iceland. Inequality (GINI) and unemployment show their own
+            characteristic spreads, with Southern European outliers pulling the tails.
         </p>
     </div>
     <div class="wide-container">
         <div class="figure-block">
-            <iframe class="map-frame" src="visualizations/opioid_narcotics_single_timeline_map.html"
-                    title="Animated heatmap of opioid incidents across San Francisco, 2003-2025"></iframe>
+            <img src="images/distribution_of_metrics.png"
+                 alt="Distribution histograms of four metrics across 21 European countries">
             <div class="figure-caption">
-                <strong>Figure 3.</strong> Animated heatmap of opioid-related incidents in San Francisco,
-                 2003-2025. Each frame represents one year. In the early period, incidents
-                are spread across multiple neighborhoods (Mission, Bayview, Tenderloin). By 2020-2025,
-                the heat signature has contracted sharply into the Tenderloin, reflecting both the
-                fentanyl supply shift and intensified enforcement in that area.
+                <strong>Figure 2.</strong> Distributions of Happiness, GINI Index, Unemployment Rate, and
+                Antidepressant usage across 21 European countries (2015–2020 averages). Dashed lines mark
+                mean and median. The antidepressant distribution has notable right-skew driven by the Nordic outliers.
             </div>
         </div>
     </div>
 </section>
+
 <!-- ════════════════════════════════════════════════════════════════════════ -->
-<!-- SECTION 5: CRITICAL DISCUSSION                                          -->
+<!-- SECTION 3: CORRELATIONS                                                 -->
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section">
     <div class="container">
-        <h2>Does More Enforcement Help?</h2>
+        <h2>What Correlates with Happiness?</h2>
         <p>
-            The surge in opiate incidents after 2019 coincides with a major escalation in drug
-            enforcement. After December 2021, when the Mayor declared a state of emergency in the Tenderloin, 
-            in early 2022 the District Attorney implemented new policies to "bundle misdemeanor drug
-            possession charges"<sup><a href="#ref8">[8]</a></sup>. In 2023, the California Governor authorized a multiagency operation
-            specifically targeting fentanyl trafficking<sup><a href="#ref9">[9]</a></sup>.
+            The scatter matrix below maps every pairwise relationship among our four variables.
+            Each cell shows an OLS regression line and its R² — the proportion of variance explained.
+            Several patterns emerge:
         </p>
-
-        <div class="callout callout-critical">
-            <strong>The paradox:</strong> A 2025 study published in <em>JAMA Network Open</em> found that
-            law enforcement drug seizures in San Francisco were associated with a <strong>74% increase</strong>
-            in the relative risk of a fatal opioid overdose within 100 meters the day after the seizure. 
-            The elevated risk persisted for up to 7 days<sup><a href="#ref4">[4]</a></sup>.
+        <ul style="margin-bottom: 1.5em; padding-left: 1.5em;">
+            <li><strong>Happiness vs. Antidepressants (R² = 0.20):</strong> Positive! Happier countries medicate more.</li>
+            <li><strong>Happiness vs. GINI (R² = 0.39):</strong> Negative. More equality → more happiness.</li>
+            <li><strong>Happiness vs. Unemployment (R² = 0.18):</strong> Negative. Jobs matter.</li>
+            <li><strong>Antidepressants vs. GINI (R² = 0.01):</strong> Essentially zero — medication isn't about inequality.</li>
+        </ul>
+        <p>
+            The paradox holds: even after controlling for the obvious economic suspects (inequality, unemployment),
+            the positive association between happiness and antidepressants persists. Something else is driving it.
+        </p>
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <img src="images/scatter_plot_matrix.png"
+                 alt="Scatter plot matrix with OLS regression lines and R² values">
+            <div class="figure-caption">
+                <strong>Figure 3.</strong> Pairwise scatter matrix with OLS regression lines and R² values.
+                The diagonal shows kernel density estimates. The positive slope in the Happiness–Antidepressants
+                cell (upper-right area) is the paradox visualised as a trend line.
+            </div>
         </div>
+    </div>
+</section>
 
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 4: GEOGRAPHY                                                    -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+    <div class="container">
+        <h2>A Map of Well-Being</h2>
         <p>
-            How can seizing drugs <em>increase</em> overdose deaths? The researchers propose a mechanism:
-            when police arrest a dealer and seize their supply, the people who depended on that dealer
-            — many of whom are physically dependent on opioids — must urgently find a new source. The
-            replacement drugs may be more potent, differently composed, or simply unfamiliar,
-            dramatically increasing overdose risk<sup><a href="#ref6">[6]</a></sup>.
+            Geography tells a clear story. The choropleth below paints each nation by its happiness
+            score, and a striking <strong>north–south gradient</strong> emerges. The Nordic and
+            Northwestern countries — Finland, Denmark, Netherlands, Sweden — glow with high values.
+            As you move south and east — through France, Italy, Spain, Hungary, Portugal — scores drop
+            steadily. Use the dropdown tabs to switch between Happiness, GINI, Unemployment, and
+            Antidepressants — and watch how the geographic patterns overlap.
         </p>
-        <p>
-            As the FilterMag summary of this research puts it: <em>"To our knowledge, no evidence-based
-            approach exists that shows supply-side interventions, such as policing and seizing drugs,
-            reduces drug use or drug-related health problems"</em>
-            <sup><a href="#ref5">[5]</a></sup>.
-        </p>
-        <p>
-            The researchers recommend evidence-based alternatives: easier access to medications for opioid
-            use disorder, safe supply programs, drug decriminalization, and supervised consumption sites —
-            all of which have been shown to reduce overdose deaths without increasing crime
-            <sup><a href="#ref6">[6]</a></sup>. One often-cited example is Portugal, which in 2001 decriminalized
-            the possession of small amounts of drugs and shifted its approach toward treatment and harm reduction
-            rather than punishment. Individuals are referred to “dissuasion commissions” composed of health and
-            social work professionals instead of entering the criminal justice system.
-        </p>
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <iframe class="frame-geo" src="visualizations/happiness_geo.html"
+                    title="Choropleth map of Happiness scores across Europe"></iframe>
+            <div class="figure-caption">
+                <strong>Figure 4.</strong> Choropleth of average Happiness scores (2015–2020) across Europe.
+                Use the dropdown tabs to compare all four metrics. The geographic clustering suggests that
+                shared institutions, history, and culture — not just economics — shape national well-being.
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 5: ARCHETYPES                                                   -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="section">
+    <div class="container">
+        <h2>Three Archetypes of European Well-Being</h2>
         <p>
-            This reform was paired with increased investment in addiction treatment and public health services.
-            In the years following the policy change, Portugal experienced significant reductions in overdose deaths
-            and HIV transmission, while overall drug use did not increase
-            <sup><a href="#ref10">[10]</a></sup>. The case suggests that reducing harm does not necessarily depend
-            on eliminating drug use, but on making drug use less dangerous.
+            To move beyond simple correlations, we used <strong>K-Means clustering</strong> to
+            discover natural groupings among the 21 countries based on all four metrics simultaneously.
+            We evaluated K = 2 through 8 using the <strong>silhouette score</strong> (a measure of
+            how well-separated the clusters are). K = 2 scored highest (0.362) but offered too little
+            nuance; K = 3 provided the best trade-off between interpretability, cluster balance, and
+            score (0.316) — with no singleton clusters. K ≥ 5 produced meaningless one-country clusters.
+            PCA (Principal Component Analysis) then projects these three groups into two dimensions for
+            visualisation, capturing 76% of total variance.
         </p>
+        <p>
+            The clusters tell a compelling story:
+        </p>
+        <div class="callout">
+            <strong>Cluster 0 — "The Happy North" (11 countries):</strong> Austria, Belgium, Czechia, Denmark,
+            Finland, Germany, Iceland, Netherlands, Norway, Sweden, UK — <em>the happy, medicated,
+            equal north</em>. Avg happiness 7.25, low GINI (28.6), low unemployment (5.2%),
+            high antidepressants (78 DDD).<br><br>
+            <strong>Cluster 1 — "The Struggling South" (6 countries):</strong> France, Italy, Latvia,
+            Lithuania, Portugal, Spain — <em>higher inequality and unemployment, moderate medication</em>.
+            Avg happiness 6.10, GINI 34.7, unemployment 10.3%.<br><br>
+            <strong>Cluster 2 — "The Eastern Middle" (4 countries):</strong> Estonia, Hungary, Slovakia,
+            Slovenia — <em>low inequality like the north, but low happiness and low medication</em>.
+            Avg happiness 5.93, GINI 27.7, antidepressants just 41 DDD.
+        </div>
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <iframe class="frame-pca" src="visualizations/pca_clusters_3d.html"
+                    title="3D PCA plot showing K-Means clusters of 21 European countries"></iframe>
+            <div class="figure-caption">
+                <strong>Figure 5.</strong> K-Means clusters (K=3, selected via silhouette analysis)
+                projected into 3D PCA space. Drag to rotate. The three principal components capture
+                88% of total variance. The tight clustering of Nordic + Northwestern
+                countries (Cluster 0) confirms they share a distinct structural profile.
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 6: OVER TIME                                                    -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+    <div class="container">
+        <h2>Is It Stable? Tracking the Paradox Over Time</h2>
         <p>
-            Whether San Francisco adopts such approaches remains uncertain, but the data suggests that continuing to rely on enforcement alone may not be enough.
+            A single cross-section might be a fluke. But what if we watch the paradox unfold year by year?
+            The animated scatter below tracks each country from 2015 to 2020 through Unemployment × Happiness
+            space, with bubble size encoding antidepressant usage. Press play and notice: the Nordic countries
+            remain anchored in the top-left corner (low unemployment, high happiness, large bubbles)
+            throughout the entire period. The paradox is <strong>structural, not momentary</strong>.
         </p>
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <iframe class="frame-anim" src="visualizations/happiness_animated.html"
+                    title="Animated scatter: country trajectories 2015-2020"></iframe>
+            <div class="figure-caption">
+                <strong>Figure 6a.</strong> Animated scatter plot (2015–2020). Each bubble is a country.
+                X = Unemployment rate, Y = Happiness, Size = Antidepressant DDD, Colour = Cluster.
+                Notice how Spain drifts left as unemployment falls, while the Nordics barely move.
+            </div>
+        </div>
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <iframe class="frame-bump" src="visualizations/happiness_bump.html"
+                    title="Bump chart of happiness rankings 2015-2020"></iframe>
+            <div class="figure-caption">
+                <strong>Figure 6b.</strong> Happiness rankings over 2015–2020 (1 = happiest).
+                Finland, Denmark, and Iceland trade the top three spots but never drop below 4th.
+                The stability suggests deep institutional roots, not policy gimmicks.
+            </div>
+        </div>
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <iframe class="map-frame" src="visualizations/happiness_change_map.html"
+                    title="Folium map showing happiness change 2015-2020"></iframe>
+            <div class="figure-caption">
+                <strong>Figure 6c.</strong> Net happiness score change (2015 → 2020).
+                Green markers = improvement, Red = decline. Click for details.
+                Most changes are modest (±0.3), reinforcing that these are stable structural patterns.
+            </div>
+        </div>
+    </div>
+</section>
 
-        <h3>What the data can — and can't — tell us</h3>
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 7: THE TWIST — ESS                                              -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="section">
+    <div class="container">
+        <h2>The Explanation: It's About Trust</h2>
         <p>
-            It's important to be transparent about limitations. The explosion of "opiates" in SFPD data
-            could partly reflect <em>more enforcement</em> rather than <em>more drug use</em>. The
-            Tenderloin emergency declaration almost certainly increased the volume of police contacts in
-            that neighborhood. As discussed by Richardson et al.<sup><a href="#ref2">[2]</a></sup>, 
-            arrest data is shaped by policing priorities. A neighborhood where police are sent more often will generate more
-            incident reports, regardless of whether actual drug use has increased.
+            We've established the paradox and shown it's real, persistent, and geographic. But we
+            haven't explained <em>why</em>. For that, we turn to the <strong>European Social Survey
+            (Round 9, 2018)</strong> — one of the highest-quality cross-national surveys in the world,
+            with ~50,000 respondents answering detailed questions about their trust in institutions,
+            social connections, and civic engagement.
         </p>
         <p>
-        <blockquote style="border-left: 5px solid #d32f2f; padding-left: 15px; font-style: italic; margin: 20px 0;">
-            However, <strong>dead bodies cannot be explained by policing strategy changes.</strong> 
-            The fact that 92% of opioid overdose deaths in recent years involved fentanyl 
-            <sup><a href="#ref7">[7]</a></sup> confirms what the police data suggests: 
-            Fentanyl is transforming San Francisco's drug landscape.
-        </blockquote>
+            From six ESS variables, we constructed two composite indices:
         </p>
+        <div class="callout">
+            <strong>Institutional Trust</strong> = z-score average of: Trust in People (0–10),
+            Trust in Politicians (0–10), and Satisfaction with Democracy (0–10).<br><br>
+            <strong>Social Connection</strong> = z-score average of: Frequency of Discussing Politics,
+            Frequency of Social Meetings, and Participation in Social Activities.
+        </div>
+        <p>
+            The result is the single most striking finding in our analysis:
+        </p>
+        <p class="lead-text">
+            <strong>Institutional Trust explains 75% of the cross-country variation in happiness</strong>
+            (R² = 0.749, p &lt; 0.0001).
+        </p>
+        <p>
+            This dwarfs every other predictor we examined. Not GINI (R² = 0.39), not unemployment (R² = 0.18),
+            not GDP. <strong>Trust is the master variable.</strong> Countries where people trust their
+            government, their neighbours, and their democratic institutions are overwhelmingly happier.
+        </p>
+        <p>
+            And here's the key to resolving the paradox: these same high-trust societies have
+            <strong>destigmatised mental healthcare</strong>. When you trust your doctor, your
+            health system, and your society not to judge you, you're far more likely to seek help
+            for depression — and that help often comes in the form of antidepressants. The high
+            prescription rates in the Nordics don't signal hidden misery; they signal
+            <strong>a society that takes mental health as seriously as physical health</strong>.
+        </p>
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <iframe src="visualizations/ess_trust_vs_happiness.html"
+                    title="Scatter: Institutional Trust vs Happiness, R²=0.749"></iframe>
+            <div class="figure-caption">
+                <strong>Figure 7.</strong> Institutional Trust (z-score composite from ESS Round 9) vs.
+                Happiness Score. R² = 0.749. Dashed line = OLS fit. Bubble size = antidepressant DDD.
+                The largest bubbles (highest medication) cluster in the upper-right: high trust, high happiness.
+                Finland and Denmark exemplify the pattern perfectly.
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h3>The Cluster Profiles Confirm It</h3>
+        <p>
+            The radar chart below shows how each cluster scores across all six raw ESS variables
+            (min-max normalised to 0–1). Cluster 0 — our "happy, medicated" Nordic archetype —
+            dominates on <em>every single dimension of trust and social engagement</em>. They discuss
+            politics more, meet friends more often, participate in more social activities, trust people
+            more, trust politicians more, and are more satisfied with their democracy.
+        </p>
+        <p>
+            Clusters 1 and 2 — the Southern and Eastern groups — score lower across the board. The
+            gap isn't in wealth or weather; it's in <strong>social fabric</strong>.
+        </p>
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <iframe src="visualizations/ess_cluster_radar.html"
+                    title="Radar chart: ESS variable profiles by cluster"></iframe>
+            <div class="figure-caption">
+                <strong>Figure 8.</strong> Social fabric profiles by K-Means cluster (K=3). Each axis
+                represents one ESS variable (min-max normalised). Cluster 0 (Nordic/Northwestern) has the
+                largest, most rounded polygon — high scores on every dimension of social capital.
+                Cluster 2 (Eastern) has the smallest polygon.
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="callout callout-critical">
+            <strong>The resolution:</strong> The "Paradox of Happiness" isn't really a paradox at all.
+            High antidepressant use in happy countries reflects <strong>accessible, destigmatised
+            mental healthcare</strong> within high-trust societies — not hidden despair. In countries
+            where seeking help is normalised, more people get treatment. In countries where mental
+            health carries stigma, suffering goes untreated and unrecorded.
+        </div>
+    </div>
+</section>
 
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 8: EXPLORATION                                                  -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+    <div class="container">
+        <h2>Your Turn: Explore the Data</h2>
         <p>
-            Taken together, the data and the public health evidence point to the same conclusion:
-            San Francisco's drug crisis has not simply intensified — it has fundamentally changed.
-            Cocaine, heroin, and marijuana, which dominated the streets for decades, have been
-            displaced in just a few years by fentanyl, a synthetic opioid far more potent and far
-            more deadly than anything that came before it.
+            We've told our story — now it's your turn to explore. The interactive bubble chart below
+            lets you swap the X-axis between six different variables: economic indicators (Unemployment,
+            GINI) and social ones (Institutional Trust, Social Connection, Trust in People, Satisfaction
+            with Democracy). Bubble size always encodes antidepressant consumption; colour shows the
+            K-Means cluster. What patterns can you find?
         </p>
-
         <p>
-            Understanding this transformation is essential. Because if the nature of the crisis has changed,
-            the response to it must change as well.
+            <strong>Try this:</strong> Switch to "Trust in People" and watch how cleanly it separates
+            the happy from the unhappy. Then try "GINI Index" — the relationship is there but messier.
+            Trust tells a tighter story than economics alone.
         </p>
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <iframe class="frame-bubble" src="visualizations/happiness_bubble.html"
+                    title="Interactive bubble chart with axis dropdown"></iframe>
+            <div class="figure-caption">
+                <strong>Figure 9.</strong> Interactive exploration tool. Use the dropdown (top-left)
+                to change the X-axis variable. Hover over any bubble for country details. 
+                The strongest visual separation comes from the trust variables (ESS data), 
+                reinforcing our central finding.
+            </div>
+        </div>
     </div>
 </section>
 
@@ -466,64 +589,14 @@
 <section class="section">
     <div class="container">
         <div class="references">
-            <h3>References</h3>
+            <h3>Data Sources &amp; References</h3>
             <ol>
-                <li id="ref1">
-                    San Francisco Police Department. "Incident Reports (2003-present)."
-                    <a href="https://data.sfgov.org/"
-                       target="_blank" rel="noopener">DataSF Open Data</a>
-                </li>
-                <li id="ref2">
-                    Richardson, Schultz, Crawford. "Dirty Data, Bad Predictions: How Civil Rights Violations Impact Police Data, Predictive Policing Systems, and Justice." <em>New York University Law Review</em>, 94(4), 2020.
-                    <a href="https://www.nyulawreview.org/wp-content/uploads/2019/04/NYULawReview-94-Richardson_etal-FIN.pdf"
-                       target="_blank" rel="noopener">Richardson et al</a>.
-                </li>
-                <li id="ref3">
-                    San Francisco Chronicle. (2021). "San Francisco mayor declares neighborhood state of emergency amid overdose deaths" <em>The Guardian</em>.
-                    <a href="https://www.theguardian.com/us-news/2021/dec/17/san-francisco-state-of-emergency-drug-overdose-deaths"
-                       target="_blank" rel="noopener">theguardian.com</a>
-                </li>
-                <li id="ref4">
-                    Jacob Sullum (2025).
-                    "A New Study Adds to the Evidence That Drug Busts Result in More Overdose Deaths."
-                    <a href="https://reason.com/2025/03/20/a-new-study-adds-to-the-evidence-that-drug-busts-result-in-more-overdose-deaths/"
-                       target="_blank" rel="noopener">reason.com</a>
-                </li>
-                <li id="ref5">
-                    Farley, R. (2025). "New federally funded research examining drug policing and
-                    overdose data out of San Francisco." <em>Filter Magazine</em>.
-                    <a href="https://filtermag.org/san-francisco-police-drug-seizures-overdose/"
-                       target="_blank" rel="noopener">filtermag.org</a>
-                </li>
-                <li id="ref6">
-                    Kral, A. H., Humphrey, J. L., Schwab, C., Lambdin, B. H., &amp; Ray, B. (2025).
-                    "Law Enforcement Drug Seizures and Opioid-Involved Overdose Mortality."
-                    <em>JAMA Network Open</em>, 8(3), e251158.
-                    <a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2831697"
-                       target="_blank" rel="noopener">doi:10.1001/jamanetworkopen.2025.1158</a>
-                </li>
-                <li id="ref7">
-                    San Francisco Office of the Chief Medical Examiner. "Accidental Overdose Reports."
-                    <a href="https://www.sf.gov/resource--2020--ocme-accidental-overdose-reports"
-                       target="_blank" rel="noopener">sf.gov</a>
-                </li>
-                <li id="ref8">
-                    San Francisco District Attorney's Office. (2022). "District Attorney Brooke Jenkins Announces New Misdemeanor Drug Policy to Help Drug Users Get Treatment."
-                    <a href="https://sfdistrictattorney.org/district-attorney-brooke-jenkins-announces-new-misdemeanor-drug-policy-to-help-drug-users-get-treatment/"
-                       target="_blank" rel="noopener">sfdistrictattorney.org</a>
-                </li>
-                <li id="ref9">
-                    California Governor. (2023). "CHP Expansion."
-                    <a href="https://www.gov.ca.gov/2023/06/29/chp-expansion/"
-                       target="_blank" rel="noopener">gov.ca.gov</a>
-                </li>
-                <li id="ref10">
-                    Rêgo, X., Oliveira, M. J., Lameira, C., &amp; Cruz, O. S. (2021).
-                    "20 years of Portuguese drug policy – developments, challenges and the quest for human rights."
-                    <em>Substance Abuse Treatment, Prevention, and Policy</em>.
-                    <a href="https://substanceabusepolicy.biomedcentral.com/articles/10.1186/s13011-021-00394-7"
-                    target="_blank" rel="noopener">biomedcentral.com</a>
-                </li>
+                <li>Helliwell, J. F., Layard, R., &amp; Sachs, J. D. (2015–2020). <em>World Happiness Report</em>. <a href="https://worldhappiness.report/" target="_blank" rel="noopener">worldhappiness.report</a></li>
+                <li>World Bank. "GINI Index (World Bank estimate)." <a href="https://data.worldbank.org/indicator/SI.POV.GINI" target="_blank" rel="noopener">data.worldbank.org</a></li>
+                <li>World Bank. "Unemployment, total (% of total labor force, ILO estimate)." <a href="https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS" target="_blank" rel="noopener">data.worldbank.org</a></li>
+                <li>OECD. "Pharmaceutical Market: Antidepressants (Defined Daily Dose per 1,000 inhabitants per day)." <a href="https://data.oecd.org/" target="_blank" rel="noopener">data.oecd.org</a></li>
+                <li>European Social Survey Round 9 Data (2018). Data file edition 3.3. ESS ERIC. <a href="https://www.europeansocialsurvey.org/" target="_blank" rel="noopener">europeansocialsurvey.org</a></li>
+                <li>Segel, E., &amp; Heer, J. (2010). "Narrative Visualization: Telling Stories with Data." <em>IEEE Transactions on Visualization and Computer Graphics</em>, 16(6), 1139–1148.</li>
             </ol>
         </div>
     </div>
@@ -535,10 +608,11 @@
 <footer>
     <p>
         Social Data Analysis &amp; Visualization — DTU, Spring 2026<br>
-        Data: SFPD Incident Reports via DataSF &middot;
-        Built with Plotly, Folium &amp; Python
+        Data: World Happiness Report · World Bank · OECD · European Social Survey Round 9<br>
+        Built with Python, Plotly, Folium &amp; Pandas
     </p>
 </footer>
+
 
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <!-- SCROLL ANIMATION SCRIPT                                                 -->
