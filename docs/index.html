@@ -4,91 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Paradox of Happiness — Why the Happiest Countries Are the Most Medicated</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /* ── Reset & base ────────────────────────────────────────────── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Source Sans Pro', sans-serif;
-            font-weight: 300;
-            line-height: 1.75;
-            color: #2c2c2c;
-            background: #fafaf7;
+            font-family: 'Merriweather', Georgia, serif;
+            font-weight: 400;
+            line-height: 1.8;
+            color: #333;
+            background: #fff;
         }
 
         /* ── Typography ──────────────────────────────────────────────── */
-        h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; }
-        h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; }
-        h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 0.6em; color: #1a1a1a; }
-        h3 { font-size: 1.15rem; margin-bottom: 0.4em; }
-        p  { margin-bottom: 1.2em; font-size: 1.08rem; }
-        a  { color: #b5413b; text-decoration: none; border-bottom: 1px solid rgba(181,65,59,0.3); }
-        a:hover { border-bottom-color: #b5413b; }
-        strong { font-weight: 600; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; }
+        h1 { font-size: 2.2rem; line-height: 1.2; letter-spacing: -0.5px; }
+        h2 { font-size: 1.6rem; margin-bottom: 1em; color: #1a1a1a; font-weight: 600; }
+        h3 { font-size: 1.2rem; margin-bottom: 0.8em; font-weight: 600; }
+        p  { margin-bottom: 1.3em; font-size: 1rem; }
+        a  { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        strong { font-weight: 700; }
 
         /* ── Layout ──────────────────────────────────────────────────── */
-        .container { max-width: 820px; margin: 0 auto; padding: 0 1.5rem; }
-        .wide-container { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
+        .container { max-width: 660px; margin: 0 auto; padding: 0 1.5rem; }
+        .wide-container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
 
         /* ── Hero ────────────────────────────────────────────────────── */
         .hero {
-            min-height: 80vh;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
+            padding: 4rem 1.5rem 3rem;
             text-align: center;
-            padding: 4rem 1.5rem;
-            background: linear-gradient(170deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: white;
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
         }
-        .hero h1 { margin-bottom: 0.5em; }
+        .hero h1 { 
+            margin-bottom: 0.8em; 
+            color: #1a1a1a;
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.6px;
+        }
         .hero .subtitle {
-            font-size: 1.2rem; font-weight: 300;
-            opacity: 0.85; max-width: 600px;
-            margin-bottom: 2rem;
+            font-size: 1.1rem; 
+            font-weight: 300;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 1.2rem;
+            line-height: 1.6;
         }
         .hero .byline {
-            font-size: 0.9rem; opacity: 0.6;
-            letter-spacing: 0.5px; text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            font-weight: 500;
         }
-        .scroll-hint {
-            margin-top: 3rem;
-            animation: bounce 2s ease infinite;
-            opacity: 0.5; font-size: 1.6rem;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-        }
+        .scroll-hint { display: none; }
 
         /* ── Sections ────────────────────────────────────────────────── */
         .section {
-            padding: 4rem 0;
+            padding: 3.5rem 0;
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .section.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .section-alt { background: #f0efe9; }
+        .section-alt { background: #fafafa; }
 
         .lead-text {
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: #444;
-            border-left: 4px solid #b5413b;
-            padding-left: 1.2em;
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: #555;
+            border-left: 3px solid #ccc;
+            padding-left: 1.5em;
             margin: 2rem 0;
+            line-height: 1.7;
         }
 
         /* ── Figure containers ───────────────────────────────────────── */
         .figure-block {
             margin: 2.5rem 0;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            background: #fff;
+            border: 1px solid #e5e5e5;
             overflow: hidden;
         }
         .figure-block img {
@@ -110,63 +112,69 @@
         .frame-ess    { height: 630px; }
         .map-frame    { height: 620px; }
         .figure-caption {
-            padding: 1rem 1.5rem 1.2rem;
-            font-size: 0.92rem;
-            color: #555;
-            border-top: 1px solid #eee;
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px solid #e5e5e5;
             line-height: 1.6;
+            font-family: 'Inter', sans-serif;
         }
         .figure-caption strong {
             color: #333;
+            font-weight: 600;
         }
 
         /* ── Callout box ─────────────────────────────────────────────── */
         .callout {
-            background: #fff8f0;
-            border-left: 4px solid #e6973e;
+            background: #f9f9f9;
+            border-left: 3px solid #ccc;
             padding: 1.2rem 1.5rem;
             margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-            font-size: 0.98rem;
+            font-size: 0.95rem;
         }
         .callout-critical {
-            background: #fef2f2;
-            border-left-color: #b5413b;
+            background: #f5f5f5;
+            border-left-color: #999;
         }
 
         /* ── Stats row ───────────────────────────────────────────────── */
         .stats-row {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             margin: 2.5rem 0;
             flex-wrap: wrap;
         }
         .stat-card {
-            flex: 1; min-width: 180px;
-            background: white;
-            border-radius: 10px;
+            flex: 1; 
+            min-width: 150px;
+            background: transparent;
+            border: 1px solid #e5e5e5;
             padding: 1.5rem;
             text-align: center;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
         }
         .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem; font-weight: 900;
-            color: #b5413b;
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
             line-height: 1;
         }
         .stat-label {
-            font-size: 0.85rem; color: #777;
-            margin-top: 0.4rem;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.6rem;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.4;
         }
 
         /* ── References ──────────────────────────────────────────────── */
         .references {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: #666;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid #e5e5e5;
             padding-top: 1.5rem;
             margin-top: 2rem;
+            font-family: 'Inter', sans-serif;
         }
         .references ol { padding-left: 1.5em; }
         .references li { margin-bottom: 0.8em; line-height: 1.5; }
@@ -178,17 +186,18 @@
         /* ── Footer ──────────────────────────────────────────────────── */
         footer {
             text-align: center;
-            padding: 2rem 1rem;
-            font-size: 0.85rem;
+            padding: 3rem 1rem;
+            font-size: 0.8rem;
             color: #999;
-            background: #1a1a2e;
-            color: rgba(255,255,255,0.5);
+            background: #fff;
+            border-top: 1px solid #e5e5e5;
+            font-family: 'Inter', sans-serif;
         }
-
-        /* ── Map specific ────────────────────────────────────────────── */
 
         /* ── Responsive ──────────────────────────────────────────────── */
         @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero .subtitle { font-size: 1rem; }
             .stats-row { flex-direction: column; }
             .figure-block iframe { height: 420px; }
             .frame-bars, .frame-bump, .frame-anim,
@@ -233,26 +242,26 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section">
     <div class="container">
-        <h2>The Paradox at a Glance</h2>
+        <h2>Are the Happiness Rankings a Lie?</h2>
         <p>
-            Finland, Denmark, Iceland, Sweden — year after year, these Nordic nations top the
-            <strong>World Happiness Report</strong> <a class="cite" href="#ref5">[5]</a>. Their citizens report the highest life satisfaction
-            on Earth. And yet, these same countries also appear in the top half of the OECD in <strong>antidepressant
-            consumption</strong> <a class="cite" href="#ref6">[6]</a>, prescribing up to 140 defined daily doses per 1,000 people every single day.
+            Year after year, Nordic nations top the <strong>World Happiness Report</strong> <a class="cite" href="#ref-5">[5]</a>. 
+            School is free. Healthcare is universal. Parental leave is generous. Streets are safe, 
+            corruption is rare, and trust in government and society runs deep. By almost every measure, these are 
+            the best places on Earth to be alive. And yet, these same countries also lead the OECD in 
+            antidepressant consumption</strong> <a class="cite" href="#ref-6">[6]</a>, prescribing up to 140 defined daily doses per 1,000 people every single day.<sup><a href="#ref-4">[4]</a></sup>
         </p>
         <p>
-            This is the <em>Paradox of Happiness</em>: the places where people say they are happiest are
+            This is what is called "The Paradox of Happiness": the places where people say they are happiest are
             also where they take the most medication for depression. Are the happiness rankings a lie?
             Are these countries hiding collective misery behind a pharmaceutical veil? Or is something
             more subtle at work?
         </p>
         <p>
-            To investigate, we assembled data on <strong>21 European countries</strong> from five sources:
-            the World Happiness Report (2015-2020) <a class="cite" href="#ref5">[5]</a>, World Bank GINI coefficients (inequality) <a class="cite" href="#ref3">[3]</a>,
-            World Bank unemployment rates <a class="cite" href="#ref2">[2]</a>, OECD antidepressant prescription statistics <a class="cite" href="#ref6">[6]</a>, and the
-            <strong>European Social Survey Round 9</strong> (2018) <a class="cite" href="#ref4">[4]</a> for institutional trust and social
-            connectedness. We averaged across years to capture structural patterns rather than
-            year-to-year noise.
+             To investigate, we assembled data on <strong>21 European countries</strong> from five sources:
+            the World Happiness Report (2015-2020) <a class="cite" href="#ref-5">[5]</a>, World Bank GINI coefficients (inequality) <a class="cite" href="#ref-3">[3]</a>,
+            World Bank unemployment rates <a class="cite" href="#ref-2">[2]</a>, OECD antidepressant prescription statistics <a class="cite" href="#ref-6">[6]</a>, and the
+            <strong>European Social Survey Round 9</strong> (2018) <a class="cite" href="#ref-4">[4]</a> for institutional trust and social
+            connectedness. We averaged across years to o filter out the annual noise and expose the deeper structural patterns that define each nation
         </p>
         <p>
             The chart below makes the paradox unmistakable. On the left, countries ranked by happiness.
@@ -268,10 +277,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <strong>Figure 1.</strong> Countries sorted independently by Happiness (left) and
                 Antidepressant usage in DDD/1,000/day (right). <span style="color:#310ff3">Blue</span> = Scandinavian countries.
                 Iceland, the happiest and most medicated, is very high in both charts.
-                <br><small style="color:#666;"><strong>DDD</strong> (Defined Daily Dose) is the W.H.O. <a class="cite" href="#ref7">[7]</a> standard unit for drug consumption. A value of 50 DDD/1,000/day means 50 out of every 1,000 people take one full maintenance dose of an antidepressant on any given day.</small>
+                <br><small style="color:#666;"><strong>DDD</strong> (Defined Daily Dose) is the W.H.O. <a class="cite" href="#ref-7">[7]</a> standard unit for drug consumption. A value of 50 DDD/1,000/day means 50 out of every 1,000 people take one full maintenance dose of an antidepressant on any given day.</small>
             </div>
         </div>
     </div>
+
     <div class="container">
         <div class="stats-row">
             <div class="stat-card">
@@ -300,13 +310,13 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section section-alt">
     <div class="container">
-        <h2>Understanding the Landscape</h2>
+        <h2>The Numbers Behind the Story</h2>
         <p>
             Before searching for explanations, we need to understand what we're working with.
             The distributions below reveal the spread of our four metrics across 21 nations.
-            Happiness <a class="cite" href="#ref5">[5]</a> is relatively concentrated (most countries between 5.5 and 7.8), but
-            antidepressant use <a class="cite" href="#ref6">[6]</a> spans an enormous range — from barely 16 DDD/1,000/day in Latvia
-            to a staggering 140 in Iceland. Inequality (GINI) <a class="cite" href="#ref3">[3]</a> and unemployment <a class="cite" href="#ref2">[2]</a> show their own
+            Happiness <a class="cite" href="#ref-5">[5]</a> is relatively concentrated (most countries between 5.5 and 7.8), but
+            antidepressant use <a class="cite" href="#ref-6">[6]</a> spans an enormous range — from barely 16 DDD/1,000/day in Latvia
+            to a staggering 140 in Iceland. Inequality (GINI) <a class="cite" href="#ref-3">[3]</a> and unemployment <a class="cite" href="#ref-2">[2]</a> show their own
             characteristic spreads, with Southern European outliers pulling the tails.
         </p>
     </div>
@@ -393,7 +403,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section">
     <div class="container">
-        <h2>Three Archetypes of European Well-Being</h2>
+        <h2>Three Europes</h2>
         <p>
             To move beyond simple correlations, we used <strong>K-Means clustering</strong> to
             discover natural groupings among the 21 countries based on all four metrics simultaneously.
@@ -438,7 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section section-alt">
     <div class="container">
-        <h2>Is It Stable? Tracking the Paradox Over Time</h2>
+        <h2>Not a Fluke</h2>
         <p>
             A single averaged value might be a fluke. But what if we watch the paradox unfold year by year?
             The animated scatter below tracks each country from 2015 to 2020 through
@@ -498,12 +508,12 @@ document.addEventListener('DOMContentLoaded', function() {
         <p>
             We've established the paradox and shown it's partially true, persistent throughout the years, and has some geographic patterns. But we
             haven't explained <em>why</em> there are still some outliers and if we can find a better predictor. For that, we turn to the <strong>European Social Survey
-            (Round 9, 2018)</strong> <a class="cite" href="#ref4">[4]</a> one of the highest-quality cross-national surveys in the world,
+            (Round 9, 2018)</strong> <a class="cite" href="#ref-4">[4]</a> one of the highest-quality cross-national surveys in the world,
             with ~50,000 respondents answering detailed questions about their trust in institutions,
             social connections, and civic engagement.
         </p>
         <p>
-            From six ESS <a class="cite" href="#ref4">[4]</a> variables, we constructed two composite indices:
+            From six ESS <a class="cite" href="#ref-4">[4]</a> variables, we constructed two composite indices:
         </p>
         <div class="callout">
             <strong>Institutional Trust</strong> = z-score average of: Trust in People (0-10),
@@ -529,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function() {
             health system, and your society not to judge you, you're far more likely to seek help
             for depression or mental health issues, and that help often comes in the form of antidepressants. The high
             prescription rates in the cluster 0 don't signify artificial happiness; they signal
-            <strong>a society that takes mental health as seriously as physical health</strong> -  Sweden, Denmark, and Finland rank as the three most responsive European countries in mental healthcare <a class="cite" href="#ref8">[8]</a>, the same countries that top our happiness and antidepressant charts. <br>
+            <strong>a society that takes mental health as seriously as physical health</strong> -  Sweden, Denmark, and Finland rank as the three most responsive European countries in mental healthcare <a class="cite" href="#ref-8">[8]</a>, the same countries that top our happiness and antidepressant charts. <br>
             
             In Portugal, the outlier with high antidepressant use but low happiness, the trust levels are much lower, 
             suggesting that medication may be an automatic response to untreated mental health issues rather than a sign of awareness and care.
@@ -597,7 +607,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section section-alt">
     <div class="container">
-        <h2>Your Turn: Explore the Data</h2>
+        <h2>Now It's Your Turn</h2>
         <p>
             We've told our story, now it's your turn to explore. The interactive bubble chart below
             lets you swap the X-axis between six different variables: economic indicators (Unemployment,
@@ -634,14 +644,14 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="references">
             <h3>Data Sources &amp; References</h3>
             <ol>
-                <li id="ref1">Segel, E., &amp; Heer, J. (2010). <em>Narrative Visualization: Telling Stories with Data</em>. Stanford University. <a href="http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf" target="_blank" rel="noopener">vis.stanford.edu</a></li>
-                <li id="ref2">World Bank. "Unemployment, total (% of total labor force) (modeled ILO estimate)." <a href="https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS" target="_blank" rel="noopener">data.worldbank.org</a></li>
-                <li id="ref3">World Bank. "GINI Index." <a href="https://data.worldbank.org/indicator/SI.POV.GINI" target="_blank" rel="noopener">data.worldbank.org</a></li>
-                <li id="ref4">European Social Survey (ESS). Datafile. Sikt &ndash; Norwegian Agency for Shared Services in Education and Research. <a href="https://ess.sikt.no/en/datafile/b2b0bf39-176b-4eca-8d26-3c05ea83d2cb" target="_blank" rel="noopener">ess.sikt.no</a></li>
-                <li id="ref5">World Happiness Report. "Data Sharing." <a href="https://www.worldhappiness.report/data-sharing/" target="_blank" rel="noopener">worldhappiness.report</a></li>
-                <li id="ref6">Our World in Data. "Antidepressants per capita." <a href="https://ourworldindata.org/grapher/antidepressants-per-capita" target="_blank" rel="noopener">ourworldindata.org</a></li>
-                <li id="ref7">World Health Organization. "Definition and general considerations &ndash; Defined Daily Dose (DDD)." <a href="https://www.who.int/tools/atc-ddd-toolkit/about-ddd" target="_blank" rel="noopener">who.int</a></li>
-                <li id="ref8">Lopez-Morinigo, J.-D., Arango, C., Fiorillo, A., &amp; Dom, G. (2025). Responsiveness of European countries to the population mental health needs: A cross-national comparison study. <em>European Psychiatry</em>, 68, e102. <a href="https://doi.org/10.1192/j.eurpsy.2025.2448" target="_blank" rel="noopener">doi.org/10.1192/j.eurpsy.2025.2448</a></li>
+                <li id="ref-1">Segel, E., &amp; Heer, J. (2010). <em>Narrative Visualization: Telling Stories with Data</em>. Stanford University. <a href="http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf" target="_blank" rel="noopener">vis.stanford.edu</a></li>
+                <li id="ref-2">World Bank. "Unemployment, total (% of total labor force) (modeled ILO estimate)." <a href="https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS" target="_blank" rel="noopener">data.worldbank.org</a></li>
+                <li id="ref-3">World Bank. "GINI Index." <a href="https://data.worldbank.org/indicator/SI.POV.GINI" target="_blank" rel="noopener">data.worldbank.org</a></li>
+                <li id="ref-4">European Social Survey (ESS). Datafile. Sikt &ndash; Norwegian Agency for Shared Services in Education and Research. <a href="https://ess.sikt.no/en/datafile/b2b0bf39-176b-4eca-8d26-3c05ea83d2cb" target="_blank" rel="noopener">ess.sikt.no</a></li>
+                <li id="ref-5">World Happiness Report. "Data Sharing." <a href="https://www.worldhappiness.report/data-sharing/" target="_blank" rel="noopener">worldhappiness.report</a></li>
+                <li id="ref-6">Our World in Data. "Antidepressants per capita." <a href="https://ourworldindata.org/grapher/antidepressants-per-capita" target="_blank" rel="noopener">ourworldindata.org</a></li>
+                <li id="ref-7">World Health Organization. "Definition and general considerations &ndash; Defined Daily Dose (DDD)." <a href="https://www.who.int/tools/atc-ddd-toolkit/about-ddd" target="_blank" rel="noopener">who.int</a></li>
+                <li id="ref-8">Lopez-Morinigo, J.-D., Arango, C., Fiorillo, A., &amp; Dom, G. (2025). Responsiveness of European countries to the population mental health needs: A cross-national comparison study. <em>European Psychiatry</em>, 68, e102. <a href="https://doi.org/10.1192/j.eurpsy.2025.2448" target="_blank" rel="noopener">doi.org/10.1192/j.eurpsy.2025.2448</a></li>
             </ol>
         </div>
     </div>
