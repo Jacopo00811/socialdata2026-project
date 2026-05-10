@@ -367,14 +367,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="container">
         <h2>A Map of Well-Being</h2>
         <p>
-            Geography tells a clear story. The choropleth below paints each nation by its happiness
-            score, and a striking <strong>north-south gradient</strong> emerges. The Nordic and
-            Northwestern countries — Finland, Denmark, Netherlands, Sweden — glow with high values.
-            As you move south and east — through France, Italy, Spain, Hungary, Portugal — scores drop
-            steadily. Toggle between the <strong>Happiness</strong> and <strong>Antidepressant</strong>
-            maps to see if the same countries light up. The majority of Scandinavian countries correlate strongly
-            between the two views, while <strong>Portugal</strong>, and <strong>Norway</strong> stand out as outliers with
-            high antidepressant consumption but low happiness and vice versa respectively.
+            Geography tells a clear story. Toggle between the four maps — <strong>Happiness</strong>, <strong>Antidepressants</strong>, <strong>GINI</strong>, and <strong>Unemployment</strong>
+             — and a consistent <strong>north-south gradient</strong> emerges across all of them. The Nordic and Northwestern countries score high on happiness,
+              medicate more, and enjoy lower inequality and unemployment. As you move south and east, the picture inverts. 
+              The most striking observation is how closely the Happiness and Antidepressant maps mirror each other: 
+              <strong>Portugal</strong> and <strong>Norway</strong> stand out as the clearest outliers, with high antidepressant consumption but low happiness, and vice versa respectively.
         </p>
     </div>
     <div class="wide-container">
@@ -382,8 +379,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <iframe class="frame-geo" src="visualizations/happiness_geo.html"
                     title="Choropleth map of Happiness scores across Europe"></iframe>
             <div class="figure-caption">
-                <strong>Figure 4.</strong> Choropleth of average Happiness scores (2015-2020) across Europe.
-                Toggle between Happiness and Antidepressant use to compare the geographic patterns.
+                <strong>Figure 4.</strong> Choropleth of average values (2015–2020) across Europe. 
+                Toggle between Happiness, Antidepressant use, GINI, and Unemployment to compare geographic patterns.
                 The representation suggests that more than one factor shapes the national well-being, not just
                 economics and antidepressant use.
             </div>
@@ -532,7 +529,9 @@ document.addEventListener('DOMContentLoaded', function() {
             health system, and your society not to judge you, you're far more likely to seek help
             for depression or mental health issues, and that help often comes in the form of antidepressants. The high
             prescription rates in the cluster 0 don't signify artificial happiness; they signal
-            <strong>a society that takes mental health as seriously as physical health</strong>. In Portugal, the outlier with high antidepressant use but low happiness, the trust levels are much lower, 
+            <strong>a society that takes mental health as seriously as physical health</strong> -  Sweden, Denmark, and Finland rank as the three most responsive European countries in mental healthcare <a class="cite" href="#ref8">[8]</a>, the same countries that top our happiness and antidepressant charts. <br>
+            
+            In Portugal, the outlier with high antidepressant use but low happiness, the trust levels are much lower, 
             suggesting that medication may be an automatic response to untreated mental health issues rather than a sign of awareness and care.
         </p>
     </div>
@@ -642,6 +641,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li id="ref5">World Happiness Report. "Data Sharing." <a href="https://www.worldhappiness.report/data-sharing/" target="_blank" rel="noopener">worldhappiness.report</a></li>
                 <li id="ref6">Our World in Data. "Antidepressants per capita." <a href="https://ourworldindata.org/grapher/antidepressants-per-capita" target="_blank" rel="noopener">ourworldindata.org</a></li>
                 <li id="ref7">World Health Organization. "Definition and general considerations &ndash; Defined Daily Dose (DDD)." <a href="https://www.who.int/tools/atc-ddd-toolkit/about-ddd" target="_blank" rel="noopener">who.int</a></li>
+                <li id="ref8">Lopez-Morinigo, J.-D., Arango, C., Fiorillo, A., &amp; Dom, G. (2025). Responsiveness of European countries to the population mental health needs: A cross-national comparison study. <em>European Psychiatry</em>, 68, e102. <a href="https://doi.org/10.1192/j.eurpsy.2025.2448" target="_blank" rel="noopener">doi.org/10.1192/j.eurpsy.2025.2448</a></li>
             </ol>
         </div>
     </div>
