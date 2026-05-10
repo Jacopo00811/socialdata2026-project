@@ -101,12 +101,13 @@
             border: none;
             display: block;
         }
-        .frame-bars   { height: 720px; }
-        .frame-bump   { height: 880px; }
-        .frame-pca    { height: 550px; }
+        .frame-bars   { height: 750px; }
+        .frame-bump   { height: 950px; }
+        .frame-pca    { height: 540px; }
         .frame-geo    { height: 580px; }
-        .frame-anim   { height: 660px; }
+        .frame-anim   { height: 740px; }
         .frame-bubble { height: 710px; }
+        .frame-ess    { height: 630px; }
         .map-frame    { height: 620px; }
         .figure-caption {
             padding: 1rem 1.5rem 1.2rem;
@@ -170,6 +171,10 @@
         .references ol { padding-left: 1.5em; }
         .references li { margin-bottom: 0.8em; line-height: 1.5; }
 
+        /* ── Citation links ───────────────────────────────────────────── */
+        .cite { font-size: 0.82em; vertical-align: super; line-height: 0; border-bottom: none; }
+        .cite:hover { border-bottom: none; color: #b5413b; }
+
         /* ── Footer ──────────────────────────────────────────────────── */
         footer {
             text-align: center;
@@ -187,10 +192,26 @@
             .stats-row { flex-direction: column; }
             .figure-block iframe { height: 420px; }
             .frame-bars, .frame-bump, .frame-anim,
-            .frame-bubble, .frame-pca { height: 420px; }
+            .frame-bubble, .frame-pca, .frame-ess,
+            .frame-geo { height: 420px; }
             .map-frame { height: 450px; }
         }
     </style>
+<script>
+/* Reset body margins inside iframes so Plotly figures fit exactly */
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.figure-block iframe').forEach(function(f) {
+        f.addEventListener('load', function() {
+            try {
+                var d = f.contentDocument || f.contentWindow.document;
+                var s = d.createElement('style');
+                s.textContent = 'body{margin:0;padding:0;overflow:hidden}';
+                d.head.appendChild(s);
+            } catch(e) {}
+        });
+    });
+});
+</script>
 </head>
 <body>
 
@@ -214,10 +235,10 @@
     <div class="container">
         <h2>The Paradox at a Glance</h2>
         <p>
-            Finland, Denmark, Iceland, Norway, Sweden — year after year, these Nordic nations top the
-            <strong>World Happiness Report</strong>. Their citizens report the highest life satisfaction
-            on Earth. And yet, these same countries also lead the OECD in <strong>antidepressant
-            consumption</strong>, prescribing up to 140 defined daily doses per 1,000 people every single day.
+            Finland, Denmark, Iceland, Sweden — year after year, these Nordic nations top the
+            <strong>World Happiness Report</strong> <a class="cite" href="#ref5">[5]</a>. Their citizens report the highest life satisfaction
+            on Earth. And yet, these same countries also appear in the top half of the OECD in <strong>antidepressant
+            consumption</strong> <a class="cite" href="#ref6">[6]</a>, prescribing up to 140 defined daily doses per 1,000 people every single day.
         </p>
         <p>
             This is the <em>Paradox of Happiness</em>: the places where people say they are happiest are
@@ -226,15 +247,17 @@
             more subtle at work?
         </p>
         <p>
-            To investigate, we assembled data on <strong>21 European countries</strong> from four sources:
-            the World Happiness Report (2015–2020), World Bank GINI coefficients (inequality),
-            World Bank unemployment rates, and OECD antidepressant prescription statistics. We averaged
-            across years to capture structural patterns rather than year-to-year noise.
+            To investigate, we assembled data on <strong>21 European countries</strong> from five sources:
+            the World Happiness Report (2015-2020) <a class="cite" href="#ref5">[5]</a>, World Bank GINI coefficients (inequality) <a class="cite" href="#ref3">[3]</a>,
+            World Bank unemployment rates <a class="cite" href="#ref2">[2]</a>, OECD antidepressant prescription statistics <a class="cite" href="#ref6">[6]</a>, and the
+            <strong>European Social Survey Round 9</strong> (2018) <a class="cite" href="#ref4">[4]</a> for institutional trust and social
+            connectedness. We averaged across years to capture structural patterns rather than
+            year-to-year noise.
         </p>
         <p>
             The chart below makes the paradox unmistakable. On the left, countries ranked by happiness.
-            On the right, the same countries ranked by antidepressant usage. Notice how the red bars —
-            the Scandinavian nations — cluster near the top of <em>both</em> lists.
+            On the right, the same countries ranked by antidepressant usage. Notice how the
+            <span style="color:#310ff3">blue</span> bars, representing the majority of Scandinavian nations, cluster near the top half of <em>both</em> lists.
         </p>
     </div>
     <div class="wide-container">
@@ -244,8 +267,8 @@
             <div class="figure-caption">
                 <strong>Figure 1.</strong> Countries sorted independently by Happiness (left) and
                 Antidepressant usage in DDD/1,000/day (right). <span style="color:#310ff3">Blue</span> = Scandinavian countries.
-                Iceland, the happiest and most medicated, leads both charts. Latvia and Lithuania sit at the bottom of both.
-                <br><small style="color:#666;"><strong>DDD</strong> (Defined Daily Dose) is the W.H.O. standard unit for drug consumption. A value of 50 DDD/1,000/day means 50 out of every 1,000 people take one full maintenance dose of an antidepressant on any given day.</small>
+                Iceland, the happiest and most medicated, is very high in both charts.
+                <br><small style="color:#666;"><strong>DDD</strong> (Defined Daily Dose) is the W.H.O. <a class="cite" href="#ref7">[7]</a> standard unit for drug consumption. A value of 50 DDD/1,000/day means 50 out of every 1,000 people take one full maintenance dose of an antidepressant on any given day.</small>
             </div>
         </div>
     </div>
@@ -256,8 +279,8 @@
                 <div class="stat-label">Positive correlation between<br>Happiness &amp; Antidepressant use</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">8&times;</div>
-                <div class="stat-label">Range in antidepressant use<br>(Latvia 16 &rarr; Iceland 140 DDD)</div>
+                <div class="stat-number">8.75&times;</div>
+                <div class="stat-label">Range in antidepressant use<br>(Latvia ~16 &rarr; Iceland ~140 DDD)</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">21</div>
@@ -266,8 +289,8 @@
         </div>
         <p>
             A correlation of R = 0.45 is not trivial. It means that, on average, every step up in
-            national happiness is associated with <em>more</em> antidepressant prescriptions — the exact
-            opposite of what naive intuition would predict. Let's dig deeper into the data to understand why.
+            national happiness is associated with <em>more</em> antidepressant prescriptions. This is the exact
+            opposite of what pure intuition would suggest. Let's dig deeper into the data to understand why.
         </p>
     </div>
 </section>
@@ -281,20 +304,20 @@
         <p>
             Before searching for explanations, we need to understand what we're working with.
             The distributions below reveal the spread of our four metrics across 21 nations.
-            Happiness is relatively concentrated (most countries between 6 and 7.5), but
-            antidepressant use spans an enormous range — from barely 16 DDD/1,000/day in Latvia
-            to a staggering 140 in Iceland. Inequality (GINI) and unemployment show their own
+            Happiness <a class="cite" href="#ref5">[5]</a> is relatively concentrated (most countries between 5.5 and 7.8), but
+            antidepressant use <a class="cite" href="#ref6">[6]</a> spans an enormous range — from barely 16 DDD/1,000/day in Latvia
+            to a staggering 140 in Iceland. Inequality (GINI) <a class="cite" href="#ref3">[3]</a> and unemployment <a class="cite" href="#ref2">[2]</a> show their own
             characteristic spreads, with Southern European outliers pulling the tails.
         </p>
     </div>
     <div class="wide-container">
         <div class="figure-block">
-            <img src="images/distribution_of_metrics.png"
+            <img src="images/metric_distributions.png"
                  alt="Distribution histograms of four metrics across 21 European countries">
             <div class="figure-caption">
                 <strong>Figure 2.</strong> Distributions of Happiness, GINI Index, Unemployment Rate, and
-                Antidepressant usage across 21 European countries (2015–2020 averages). Dashed lines mark
-                mean and median. The antidepressant distribution has notable right-skew driven by the Nordic outliers.
+                Antidepressant usage across 21 European countries (2015-2020 averages). Dashed lines mark
+                mean and median. The antidepressant distribution has a bit of right-skew driven by the Nordic outliers.
             </div>
         </div>
     </div>
@@ -308,28 +331,30 @@
         <h2>What Correlates with Happiness?</h2>
         <p>
             The scatter matrix below maps every pairwise relationship among our four variables.
-            Each cell shows an OLS regression line and its R² — the proportion of variance explained.
+            Each cell shows an OLS regression line and its R² (the proportion of variance explained).
             Several patterns emerge:
         </p>
         <ul style="margin-bottom: 1.5em; padding-left: 1.5em;">
-            <li><strong>Happiness vs. Antidepressants (R² = 0.20):</strong> Positive! Happier countries medicate more.</li>
-            <li><strong>Happiness vs. GINI (R² = 0.39):</strong> Negative. More equality → more happiness.</li>
-            <li><strong>Happiness vs. Unemployment (R² = 0.18):</strong> Negative. Jobs matter.</li>
-            <li><strong>Antidepressants vs. GINI (R² = 0.01):</strong> Essentially zero — medication isn't about inequality.</li>
+            <li><strong>Happiness vs. Antidepressants (R² = 0.20):</strong> Positive. Happier countries medicate more (the paradox described in a single number).</li>
+            <li><strong>Happiness vs. GINI (R² = 0.20):</strong> Negative. More equality means more happiness.</li>
+            <li><strong>Happiness vs. Unemployment (R² = 0.12):</strong> Negative. Having a job matters, but less than expected.</li>
+            <li><strong>Antidepressants vs. GINI (R² = 0.04):</strong> Near zero. Medication has nothing to do with inequality.</li>
+            <li><strong>Antidepressants vs. Unemployment (R² ≈ 0):</strong> Essentially zero. When people struggle economically, mental health goes untreated, becoming a secondary concern.</li>
+            <li><strong>GINI vs. Unemployment (R² = 0.24):</strong> Positive. More unequal countries tend to have higher unemployment.</li>
         </ul>
         <p>
-            The paradox holds: even after controlling for the obvious economic suspects (inequality, unemployment),
+            For now the paradox holds: even after controlling for the obvious economic suspects (inequality, unemployment),
             the positive association between happiness and antidepressants persists. Something else is driving it.
         </p>
     </div>
     <div class="wide-container">
         <div class="figure-block">
-            <img src="images/scatter_plot_matrix.png"
+            <img src="images/scatter_matrix.png"
                  alt="Scatter plot matrix with OLS regression lines and R² values">
             <div class="figure-caption">
                 <strong>Figure 3.</strong> Pairwise scatter matrix with OLS regression lines and R² values.
-                The diagonal shows kernel density estimates. The positive slope in the Happiness–Antidepressants
-                cell (upper-right area) is the paradox visualised as a trend line.
+                The diagonal shows kernel density estimates. The positive slope in the Happiness-Antidepressants
+                cell (upper-right area) is the paradox visualized as a trend line.
             </div>
         </div>
     </div>
@@ -343,11 +368,13 @@
         <h2>A Map of Well-Being</h2>
         <p>
             Geography tells a clear story. The choropleth below paints each nation by its happiness
-            score, and a striking <strong>north–south gradient</strong> emerges. The Nordic and
+            score, and a striking <strong>north-south gradient</strong> emerges. The Nordic and
             Northwestern countries — Finland, Denmark, Netherlands, Sweden — glow with high values.
             As you move south and east — through France, Italy, Spain, Hungary, Portugal — scores drop
-            steadily. Use the dropdown tabs to switch between Happiness, GINI, Unemployment, and
-            Antidepressants — and watch how the geographic patterns overlap.
+            steadily. Toggle between the <strong>Happiness</strong> and <strong>Antidepressant</strong>
+            maps to see if the same countries light up. The majority of Scandinavian countries correlate strongly
+            between the two views, while <strong>Portugal</strong>, and <strong>Norway</strong> stand out as outliers with
+            high antidepressant consumption but low happiness and vice versa respectively.
         </p>
     </div>
     <div class="wide-container">
@@ -355,9 +382,10 @@
             <iframe class="frame-geo" src="visualizations/happiness_geo.html"
                     title="Choropleth map of Happiness scores across Europe"></iframe>
             <div class="figure-caption">
-                <strong>Figure 4.</strong> Choropleth of average Happiness scores (2015–2020) across Europe.
-                Use the dropdown tabs to compare all four metrics. The geographic clustering suggests that
-                shared institutions, history, and culture — not just economics — shape national well-being.
+                <strong>Figure 4.</strong> Choropleth of average Happiness scores (2015-2020) across Europe.
+                Toggle between Happiness and Antidepressant use to compare the geographic patterns.
+                The representation suggests that more than one factor shapes the national well-being, not just
+                economics and antidepressant use.
             </div>
         </div>
     </div>
@@ -374,25 +402,24 @@
             discover natural groupings among the 21 countries based on all four metrics simultaneously.
             We evaluated K = 2 through 8 using the <strong>silhouette score</strong> (a measure of
             how well-separated the clusters are). K = 2 scored highest (0.362) but offered too little
-            nuance; K = 3 provided the best trade-off between interpretability, cluster balance, and
-            score (0.316) — with no singleton clusters. K ≥ 5 produced meaningless one-country clusters.
-            PCA (Principal Component Analysis) then projects these three groups into two dimensions for
-            visualisation, capturing 76% of total variance.
+            diversity between clusters; K = 3 provided the best trade-off between interpretability, cluster balance, and
+            score (0.316) (with no singleton clusters). K ≥ 5 produced meaningless one-country clusters.
+            PCA (Principal Component Analysis) then projects these three groups into three dimensions for
+            interactive visualization, capturing 88.6% of total variance.
         </p>
         <p>
             The clusters tell a compelling story:
         </p>
         <div class="callout">
             <strong>Cluster 0 — "The Happy North" (11 countries):</strong> Austria, Belgium, Czechia, Denmark,
-            Finland, Germany, Iceland, Netherlands, Norway, Sweden, UK — <em>the happy, medicated,
-            equal north</em>. Avg happiness 7.25, low GINI (28.6), low unemployment (5.2%),
+            Finland, Germany, Iceland, Netherlands, Norway, Sweden, UK. High happiness (7.25), low GINI (28.6), low unemployment (5.2%),
             high antidepressants (78 DDD).<br><br>
             <strong>Cluster 1 — "The Struggling South" (6 countries):</strong> France, Italy, Latvia,
-            Lithuania, Portugal, Spain — <em>higher inequality and unemployment, moderate medication</em>.
-            Avg happiness 6.10, GINI 34.7, unemployment 10.3%.<br><br>
+            Lithuania, Portugal, Spain. <em>They present higher inequality and unemployment, moderate medication</em>.
+            Avg happiness (6.10), mid GINI (34.7), high unemployment (10.3%), mid antidepressants (55 DDD).<br><br>
             <strong>Cluster 2 — "The Eastern Middle" (4 countries):</strong> Estonia, Hungary, Slovakia,
-            Slovenia — <em>low inequality like the north, but low happiness and low medication</em>.
-            Avg happiness 5.93, GINI 27.7, antidepressants just 41 DDD.
+            Slovenia. <em>Represent low inequality and unemployment like the north, but low happiness and low medication</em>.
+            Avg happiness (5.93), low GINI (27.7), low unemployment (6.2%), low antidepressants (41 DDD).
         </div>
     </div>
     <div class="wide-container">
@@ -402,8 +429,8 @@
             <div class="figure-caption">
                 <strong>Figure 5.</strong> K-Means clusters (K=3, selected via silhouette analysis)
                 projected into 3D PCA space. Drag to rotate. The three principal components capture
-                88% of total variance. The tight clustering of Nordic + Northwestern
-                countries (Cluster 0) confirms they share a distinct structural profile.
+                89% of total variance. The closeness of some Eastern Middle (cluster 2) countries to cluster 0
+                confirms their similar structural profile.
             </div>
         </div>
     </div>
@@ -416,11 +443,18 @@
     <div class="container">
         <h2>Is It Stable? Tracking the Paradox Over Time</h2>
         <p>
-            A single cross-section might be a fluke. But what if we watch the paradox unfold year by year?
-            The animated scatter below tracks each country from 2015 to 2020 through Unemployment × Happiness
-            space, with bubble size encoding antidepressant usage. Press play and notice: the Nordic countries
-            remain anchored in the top-left corner (low unemployment, high happiness, large bubbles)
-            throughout the entire period. The paradox is <strong>structural, not momentary</strong>.
+            A single averaged value might be a fluke. But what if we watch the paradox unfold year by year?
+            The animated scatter below tracks each country from 2015 to 2020 through
+            Antidepressant Use vs. Happiness score, with bubble size encoding unemployment rate.
+            Press play and notice three trends: a slight increase in happiness across all countries,
+            an overall shift to the right (higher antidepressant use), and a slight decrease in
+            unemployment (shrinking bubbles). The paradox is growing, structural, and not momentary.
+        </p>
+        <p>
+            Pay particular attention to <strong>Portugal</strong> and <strong>Spain</strong>: over the years they become outliers
+            to the paradox, ending up in the top consumer of antidepressants while
+            maintaining low happiness scores. All other countries tend to stay in their
+            area, maintaining roughly the same distances to neighbouring points.
         </p>
     </div>
     <div class="wide-container">
@@ -428,9 +462,9 @@
             <iframe class="frame-anim" src="visualizations/happiness_animated.html"
                     title="Animated scatter: country trajectories 2015-2020"></iframe>
             <div class="figure-caption">
-                <strong>Figure 6a.</strong> Animated scatter plot (2015–2020). Each bubble is a country.
-                X = Unemployment rate, Y = Happiness, Size = Antidepressant DDD, Colour = Cluster.
-                Notice how Spain drifts left as unemployment falls, while the Nordics barely move.
+                <strong>Figure 6a.</strong> Animated scatter plot (2015-2020). Each bubble is a country.
+                X = Antidepressant DDD, Y = Happiness, Size = Unemployment rate, Colour = Cluster.
+                Notice how Portugal drifts right (rising antidepressant use) without gaining too much happiness for its final DDD value.
             </div>
         </div>
     </div>
@@ -439,9 +473,9 @@
             <iframe class="frame-bump" src="visualizations/happiness_bump.html"
                     title="Bump chart of happiness rankings 2015-2020"></iframe>
             <div class="figure-caption">
-                <strong>Figure 6b.</strong> Happiness rankings over 2015–2020 (1 = happiest).
-                Finland, Denmark, and Iceland trade the top three spots but never drop below 4th.
-                The stability suggests deep institutional roots, not policy gimmicks.
+                <strong>Figure 6b.</strong> Happiness rankings over 2015-2020 (1 = happiest).
+                The top spots are dominated by cluster 0 countries, while
+                the bottom half features Southern and Eastern European countries.
             </div>
         </div>
     </div>
@@ -450,9 +484,9 @@
             <iframe class="map-frame" src="visualizations/happiness_change_map.html"
                     title="Folium map showing happiness change 2015-2020"></iframe>
             <div class="figure-caption">
-                <strong>Figure 6c.</strong> Net happiness score change (2015 → 2020).
-                Green markers = improvement, Red = decline. Click for details.
-                Most changes are modest (±0.3), reinforcing that these are stable structural patterns.
+                <strong>Figure 6c.</strong> Net happiness score change (2015-2020).
+                Green markers = improvement, Red = decline. Click any marker for full details.
+                The overall happiness across Europe increased, with only minimal drops in Belgium and Norway.
             </div>
         </div>
     </div>
@@ -465,18 +499,18 @@
     <div class="container">
         <h2>The Explanation: It's About Trust</h2>
         <p>
-            We've established the paradox and shown it's real, persistent, and geographic. But we
-            haven't explained <em>why</em>. For that, we turn to the <strong>European Social Survey
-            (Round 9, 2018)</strong> — one of the highest-quality cross-national surveys in the world,
+            We've established the paradox and shown it's partially true, persistent throughout the years, and has some geographic patterns. But we
+            haven't explained <em>why</em> there are still some outliers and if we can find a better predictor. For that, we turn to the <strong>European Social Survey
+            (Round 9, 2018)</strong> <a class="cite" href="#ref4">[4]</a> one of the highest-quality cross-national surveys in the world,
             with ~50,000 respondents answering detailed questions about their trust in institutions,
             social connections, and civic engagement.
         </p>
         <p>
-            From six ESS variables, we constructed two composite indices:
+            From six ESS <a class="cite" href="#ref4">[4]</a> variables, we constructed two composite indices:
         </p>
         <div class="callout">
-            <strong>Institutional Trust</strong> = z-score average of: Trust in People (0–10),
-            Trust in Politicians (0–10), and Satisfaction with Democracy (0–10).<br><br>
+            <strong>Institutional Trust</strong> = z-score average of: Trust in People (0-10),
+            Trust in Politicians (0-10), and Satisfaction with Democracy (0-10).<br><br>
             <strong>Social Connection</strong> = z-score average of: Frequency of Discussing Politics,
             Frequency of Social Meetings, and Participation in Social Activities.
         </div>
@@ -488,28 +522,31 @@
             (R² = 0.749, p &lt; 0.0001).
         </p>
         <p>
-            This dwarfs every other predictor we examined. Not GINI (R² = 0.39), not unemployment (R² = 0.18),
-            not GDP. <strong>Trust is the master variable.</strong> Countries where people trust their
-            government, their neighbours, and their democratic institutions are overwhelmingly happier.
+            This makes every other predictor we examined very weak. Not GINI (R² = 0.20), not unemployment (R² = 0.12),
+            not antidepressants (R² = 0.20). <strong>Trust is the master variable.</strong> Countries where people trust their
+            government, their neighbors, and their democratic institutions are overwhelmingly happier.
         </p>
         <p>
-            And here's the key to resolving the paradox: these same high-trust societies have
-            <strong>destigmatised mental healthcare</strong>. When you trust your doctor, your
+            And here is, in our point of view, the key to resolving the paradox: these same high-trust societies have
+            <strong>destigmatized mental healthcare</strong>. When you trust your doctor, your
             health system, and your society not to judge you, you're far more likely to seek help
-            for depression — and that help often comes in the form of antidepressants. The high
-            prescription rates in the Nordics don't signal hidden misery; they signal
-            <strong>a society that takes mental health as seriously as physical health</strong>.
+            for depression or mental health issues, and that help often comes in the form of antidepressants. The high
+            prescription rates in the cluster 0 don't signify artificial happiness; they signal
+            <strong>a society that takes mental health as seriously as physical health</strong>. In Portugal, the outlier with high antidepressant use but low happiness, the trust levels are much lower, 
+            suggesting that medication may be an automatic response to untreated mental health issues rather than a sign of awareness and care.
         </p>
     </div>
     <div class="wide-container">
         <div class="figure-block">
-            <iframe src="visualizations/ess_trust_vs_happiness.html"
+            <iframe class="frame-ess" src="visualizations/ess_trust_vs_happiness.html"
                     title="Scatter: Institutional Trust vs Happiness, R²=0.749"></iframe>
             <div class="figure-caption">
                 <strong>Figure 7.</strong> Institutional Trust (z-score composite from ESS Round 9) vs.
                 Happiness Score. R² = 0.749. Dashed line = OLS fit. Bubble size = antidepressant DDD.
                 The largest bubbles (highest medication) cluster in the upper-right: high trust, high happiness.
-                Finland and Denmark exemplify the pattern perfectly.
+                Finland, Iceland, Sweden, and Denmark exemplify the pattern perfectly. However, Norway and the Netherlands
+                show that the link between trust and antidepressant consumption is not absolute. They have high trust
+                and happiness but lower antidepressant use compared to France, Spain, and Portugal and the UK.
             </div>
         </div>
     </div>
@@ -517,35 +554,41 @@
         <h3>The Cluster Profiles Confirm It</h3>
         <p>
             The radar chart below shows how each cluster scores across all six raw ESS variables
-            (min-max normalised to 0–1). Cluster 0 — our "happy, medicated" Nordic archetype —
+            (min-max normalized to 0-1). Cluster 0: The "happy, medicated" Nordic archetype,
             dominates on <em>every single dimension of trust and social engagement</em>. They discuss
             politics more, meet friends more often, participate in more social activities, trust people
             more, trust politicians more, and are more satisfied with their democracy.
         </p>
         <p>
-            Clusters 1 and 2 — the Southern and Eastern groups — score lower across the board. The
-            gap isn't in wealth or weather; it's in <strong>social fabric</strong>.
+            Clusters 1 and 2 each have a distinct profile.
+            Cluster 1 (Continental/Southern) has a notable spike in social meetings and activities,
+            while Cluster 2 (Eastern) is more balanced overall but shows little to no satisfaction
+            with democracy. The gap isn't in wealth or weather; it's in <strong>social fabric</strong>.
         </p>
     </div>
     <div class="wide-container">
         <div class="figure-block">
-            <iframe src="visualizations/ess_cluster_radar.html"
+            <iframe class="frame-ess" src="visualizations/ess_cluster_radar.html"
                     title="Radar chart: ESS variable profiles by cluster"></iframe>
             <div class="figure-caption">
                 <strong>Figure 8.</strong> Social fabric profiles by K-Means cluster (K=3). Each axis
-                represents one ESS variable (min-max normalised). Cluster 0 (Nordic/Northwestern) has the
-                largest, most rounded polygon — high scores on every dimension of social capital.
-                Cluster 2 (Eastern) has the smallest polygon.
+                represents one ESS variable (min-max normalized). Cluster 0 (Nordic/Northwestern) has the
+                largest, most rounded polygon presenting high scores on every dimension of social capital.
+                Cluster 1 (Continental/Southern) spikes on social meetings and activities.
+                Cluster 2 (Eastern) is the smallest polygon overall, with notably low democratic satisfaction.
             </div>
         </div>
     </div>
     <div class="container">
         <div class="callout callout-critical">
-            <strong>The resolution:</strong> The "Paradox of Happiness" isn't really a paradox at all.
-            High antidepressant use in happy countries reflects <strong>accessible, destigmatised
-            mental healthcare</strong> within high-trust societies — not hidden despair. In countries
-            where seeking help is normalised, more people get treatment. In countries where mental
-            health carries stigma, suffering goes untreated and unrecorded.
+            <strong>The resolution:</strong> The “Paradox of Happiness” is not always true, but it is
+            often satisfied. Antidepressant usage is not the only measure to indicate a country's
+            happiness, look at <strong>Portugal</strong>, <strong>Spain</strong>, <strong>Norway</strong>, and <strong>the UK</strong>, they are clear outliers. 
+            The safest single predictor of a country's happiness is <strong>Institutional Trust</strong>, which has the highest correlation of all the
+            metrics compared. High antidepressant use in happy countries reflects
+            <strong>accessible, destigmatized mental healthcare</strong> within high-trust societies,
+            not hidden despair. Antidepressant usage should be combined with other metrics for higher
+            predictive power.
         </div>
     </div>
 </section>
@@ -557,15 +600,18 @@
     <div class="container">
         <h2>Your Turn: Explore the Data</h2>
         <p>
-            We've told our story — now it's your turn to explore. The interactive bubble chart below
+            We've told our story, now it's your turn to explore. The interactive bubble chart below
             lets you swap the X-axis between six different variables: economic indicators (Unemployment,
             GINI) and social ones (Institutional Trust, Social Connection, Trust in People, Satisfaction
-            with Democracy). Bubble size always encodes antidepressant consumption; colour shows the
-            K-Means cluster. What patterns can you find?
+            with Democracy). Bubble size always encodes antidepressant consumption; color shows the
+            K-Means cluster.
+        </p>
+        <p>
+            What patterns can you find?
         </p>
         <p>
             <strong>Try this:</strong> Switch to "Trust in People" and watch how cleanly it separates
-            the happy from the unhappy. Then try "GINI Index" — the relationship is there but messier.
+            the happy from the unhappy. Then try "GINI Index", the relationship is there but messier.
             Trust tells a tighter story than economics alone.
         </p>
     </div>
@@ -576,8 +622,6 @@
             <div class="figure-caption">
                 <strong>Figure 9.</strong> Interactive exploration tool. Use the dropdown (top-left)
                 to change the X-axis variable. Hover over any bubble for country details. 
-                The strongest visual separation comes from the trust variables (ESS data), 
-                reinforcing our central finding.
             </div>
         </div>
     </div>
@@ -591,12 +635,13 @@
         <div class="references">
             <h3>Data Sources &amp; References</h3>
             <ol>
-                <li>Helliwell, J. F., Layard, R., &amp; Sachs, J. D. (2015–2020). <em>World Happiness Report</em>. <a href="https://worldhappiness.report/" target="_blank" rel="noopener">worldhappiness.report</a></li>
-                <li>World Bank. "GINI Index (World Bank estimate)." <a href="https://data.worldbank.org/indicator/SI.POV.GINI" target="_blank" rel="noopener">data.worldbank.org</a></li>
-                <li>World Bank. "Unemployment, total (% of total labor force, ILO estimate)." <a href="https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS" target="_blank" rel="noopener">data.worldbank.org</a></li>
-                <li>OECD. "Pharmaceutical Market: Antidepressants (Defined Daily Dose per 1,000 inhabitants per day)." <a href="https://data.oecd.org/" target="_blank" rel="noopener">data.oecd.org</a></li>
-                <li>European Social Survey Round 9 Data (2018). Data file edition 3.3. ESS ERIC. <a href="https://www.europeansocialsurvey.org/" target="_blank" rel="noopener">europeansocialsurvey.org</a></li>
-                <li>Segel, E., &amp; Heer, J. (2010). "Narrative Visualization: Telling Stories with Data." <em>IEEE Transactions on Visualization and Computer Graphics</em>, 16(6), 1139–1148.</li>
+                <li id="ref1">Segel, E., &amp; Heer, J. (2010). <em>Narrative Visualization: Telling Stories with Data</em>. Stanford University. <a href="http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf" target="_blank" rel="noopener">vis.stanford.edu</a></li>
+                <li id="ref2">World Bank. "Unemployment, total (% of total labor force) (modeled ILO estimate)." <a href="https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS" target="_blank" rel="noopener">data.worldbank.org</a></li>
+                <li id="ref3">World Bank. "GINI Index." <a href="https://data.worldbank.org/indicator/SI.POV.GINI" target="_blank" rel="noopener">data.worldbank.org</a></li>
+                <li id="ref4">European Social Survey (ESS). Datafile. Sikt &ndash; Norwegian Agency for Shared Services in Education and Research. <a href="https://ess.sikt.no/en/datafile/b2b0bf39-176b-4eca-8d26-3c05ea83d2cb" target="_blank" rel="noopener">ess.sikt.no</a></li>
+                <li id="ref5">World Happiness Report. "Data Sharing." <a href="https://www.worldhappiness.report/data-sharing/" target="_blank" rel="noopener">worldhappiness.report</a></li>
+                <li id="ref6">Our World in Data. "Antidepressants per capita." <a href="https://ourworldindata.org/grapher/antidepressants-per-capita" target="_blank" rel="noopener">ourworldindata.org</a></li>
+                <li id="ref7">World Health Organization. "Definition and general considerations &ndash; Defined Daily Dose (DDD)." <a href="https://www.who.int/tools/atc-ddd-toolkit/about-ddd" target="_blank" rel="noopener">who.int</a></li>
             </ol>
         </div>
     </div>
