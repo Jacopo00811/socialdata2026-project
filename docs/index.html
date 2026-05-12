@@ -32,36 +32,63 @@
         .wide-container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
 
         /* ── Hero ────────────────────────────────────────────────────── */
+        /* ── Hero ────────────────────────────────────────────────────── */
         .hero {
-            padding: 4rem 1.5rem 3rem;
+            padding: 3rem 1.5rem 2.5rem;
             text-align: center;
             background: #fff;
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 3px double #1a1a1a;
+            max-width: 760px;
+            margin: 0 auto;
         }
-        .hero h1 { 
-            margin-bottom: 0.8em; 
-            color: #1a1a1a;
-            font-size: 2.4rem;
+        .hero-kicker {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 1.2rem;
+        }
+        .hero h1 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
             font-weight: 700;
-            letter-spacing: -0.6px;
+            color: #1a1a1a;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.6em;
+        }
+        .hero-rule {
+            width: 40px;
+            height: 2px;
+            background: #1a1a1a;
+            margin: 1.2rem auto;
         }
         .hero .subtitle {
-            font-size: 1.1rem; 
+            font-family: 'Merriweather', serif;
+            font-size: 1.1rem;
             font-weight: 300;
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto 1.2rem;
-            line-height: 1.6;
+            font-style: italic;
+            color: #444;
+            max-width: 580px;
+            margin: 0 auto 1.6rem;
+            line-height: 1.7;
         }
-        .hero .byline {
+        .hero-meta {
             font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #999;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            font-weight: 500;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
         }
-        .scroll-hint { display: none; }
+        .hero-meta-dot { color: #ccc; }
 
         /* ── Sections ────────────────────────────────────────────────── */
         .section {
@@ -241,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- SECTION 1: THE PARADOX AT A GLANCE                                      -->
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section">
-    <div class="container">
+    <div class="wide-container">
         <h2>Are the Happiness Rankings a Lie?</h2>
         <p>
             Year after year, Nordic nations top the <strong>World Happiness Report</strong> <a class="cite" href="#ref-5">[5]</a>. 
@@ -261,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
             the World Happiness Report (2015-2020) <a class="cite" href="#ref-5">[5]</a>, World Bank GINI coefficients (inequality) <a class="cite" href="#ref-3">[3]</a>,
             World Bank unemployment rates <a class="cite" href="#ref-2">[2]</a>, OECD antidepressant prescription statistics <a class="cite" href="#ref-6">[6]</a>, and the
             <strong>European Social Survey Round 9</strong> (2018) <a class="cite" href="#ref-4">[4]</a> for institutional trust and social
-            connectedness. We averaged across years to o filter out the annual noise and expose the deeper structural patterns that define each nation
+            connectedness. We averaged across years to filter out the annual noise and expose the deeper structural patterns that define each nation
         </p>
         <p>
             The chart below makes the paradox unmistakable. On the left, countries ranked by happiness.
@@ -282,40 +309,30 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 
-    <div class="container">
-        <div class="stats-row">
-            <div class="stat-card">
-                <div class="stat-number">R = 0.45</div>
-                <div class="stat-label">Positive correlation between<br>Happiness &amp; Antidepressant use</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">8.75&times;</div>
-                <div class="stat-label">Range in antidepressant use<br>(Latvia ~16 &rarr; Iceland ~140 DDD)</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">21</div>
-                <div class="stat-label">European countries<br>in our analysis</div>
-            </div>
+        <div class="wide-container">
+            <p>
+                The left side holds few surprises. Nordic nations sit where we expect them, 
+                happiness scores fading as you move south and east. But the right side is stranger. 
+                Latvia, one of Europe's least happy countries, is also its least medicated. 
+                That fits the story. Portugal does not: ranking near the bottom in happiness, 
+                it still prescribes antidepressants at nearly Icelandic rates. The paradox, 
+                it turns out, is not perfectly clean and that makes it more interesting, not less.
+            </p>
         </div>
-        <p>
-            A correlation of R = 0.45 is not trivial. It means that, on average, every step up in
-            national happiness is associated with <em>more</em> antidepressant prescriptions. This is the exact
-            opposite of what pure intuition would suggest. Let's dig deeper into the data to understand why.
-        </p>
-    </div>
+
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <!-- SECTION 2: THE DATA                                                     -->
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section section-alt">
-    <div class="container">
+    <div class="wide-container">
         <h2>The Numbers Behind the Story</h2>
         <p>
             Before searching for explanations, we need to understand what we're working with.
             The distributions below reveal the spread of our four metrics across 21 nations.
             Happiness <a class="cite" href="#ref-5">[5]</a> is relatively concentrated (most countries between 5.5 and 7.8), but
-            antidepressant use <a class="cite" href="#ref-6">[6]</a> spans an enormous range — from barely 16 DDD/1,000/day in Latvia
+            antidepressant use <a class="cite" href="#ref-6">[6]</a> spans an enormous range from barely 16 DDD/1,000/day in Latvia
             to a staggering 140 in Iceland. Inequality (GINI) <a class="cite" href="#ref-3">[3]</a> and unemployment <a class="cite" href="#ref-2">[2]</a> show their own
             characteristic spreads, with Southern European outliers pulling the tails.
         </p>
@@ -334,54 +351,14 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════════════ -->
-<!-- SECTION 3: CORRELATIONS                                                 -->
-<!-- ════════════════════════════════════════════════════════════════════════ -->
-<section class="section">
-    <div class="container">
-        <h2>What Correlates with Happiness?</h2>
-        <p>
-            The scatter matrix below maps every pairwise relationship among our four variables.
-            Each cell shows an OLS regression line and its R² (the proportion of variance explained).
-            Several patterns emerge:
-        </p>
-        <ul style="margin-bottom: 1.5em; padding-left: 1.5em;">
-            <li><strong>Happiness vs. Antidepressants (R² = 0.20):</strong> Positive. Happier countries medicate more (the paradox described in a single number).</li>
-            <li><strong>Happiness vs. GINI (R² = 0.20):</strong> Negative. More equality means more happiness.</li>
-            <li><strong>Happiness vs. Unemployment (R² = 0.12):</strong> Negative. Having a job matters, but less than expected.</li>
-            <li><strong>Antidepressants vs. GINI (R² = 0.04):</strong> Near zero. Medication has nothing to do with inequality.</li>
-            <li><strong>Antidepressants vs. Unemployment (R² ≈ 0):</strong> Essentially zero. When people struggle economically, mental health goes untreated, becoming a secondary concern.</li>
-            <li><strong>GINI vs. Unemployment (R² = 0.24):</strong> Positive. More unequal countries tend to have higher unemployment.</li>
-        </ul>
-        <p>
-            For now the paradox holds: even after controlling for the obvious economic suspects (inequality, unemployment),
-            the positive association between happiness and antidepressants persists. Something else is driving it.
-        </p>
-    </div>
-    <div class="wide-container">
-        <div class="figure-block">
-            <img src="images/scatter_matrix.png"
-                 alt="Scatter plot matrix with OLS regression lines and R² values">
-            <div class="figure-caption">
-                <strong>Figure 3.</strong> Pairwise scatter matrix with OLS regression lines and R² values.
-                The diagonal shows kernel density estimates. The positive slope in the Happiness-Antidepressants
-                cell (upper-right area) is the paradox visualized as a trend line.
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════════════════════ -->
 <!-- SECTION 4: GEOGRAPHY                                                    -->
 <!-- ════════════════════════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-    <div class="container">
+<section class="section section">
+    <div class="wide-container">
         <h2>A Map of Well-Being</h2>
         <p>
-            Geography tells a clear story. Toggle between the four maps — <strong>Happiness</strong>, <strong>Antidepressants</strong>, <strong>GINI</strong>, and <strong>Unemployment</strong>
-             — and a consistent <strong>north-south gradient</strong> emerges across all of them. The Nordic and Northwestern countries score high on happiness,
-              medicate more, and enjoy lower inequality and unemployment. As you move south and east, the picture inverts. 
-              The most striking observation is how closely the Happiness and Antidepressant maps mirror each other: 
-              <strong>Portugal</strong> and <strong>Norway</strong> stand out as the clearest outliers, with high antidepressant consumption but low happiness, and vice versa respectively.
+            Geography tells a clear story. Toggle between the four maps: <strong>Happiness</strong>, <strong>Antidepressants</strong>, <strong>GINI</strong>, and <strong>Unemployment</strong>
+            .
         </p>
     </div>
     <div class="wide-container">
@@ -395,25 +372,72 @@ document.addEventListener('DOMContentLoaded', function() {
                 economics and antidepressant use.
             </div>
         </div>
+            The Nordic and Northwestern countries score high on happiness, and enjoy lower inequality and unemployment. As you move south and east, the picture inverts. 
+            The most striking observation is how closely the Happiness and Antidepressant maps mirror each other: 
+            <strong>Portugal</strong> and <strong>Norway</strong> stand out as the clearest outliers, with high antidepressant consumption but low happiness, and vice versa respectively. 
     </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 3: CORRELATIONS                                                 -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="section-alt">
+    <div class="wide-container">
+        <h2>What Correlates with Happiness?</h2>
+        
+        <p>Before we can solve the paradox, we need to rule out the obvious. 
+        Wealth, inequality and unemployment are the usual suspects whenever 
+        happiness enters the conversation. So we put them to the test.</p>
+
+        <p>The matrix below maps every pairwise relationship among our four 
+        variables. Happiness, antidepressant use, inequality, and unemployment. 
+        Each cell is a question: do these two things move together across Europe? 
+        The red line tells you the direction. The R² tells you how strongly.</p>
+
+    </div>
+    <div class="wide-container">
+        <div class="figure-block">
+            <img src="images/scatter_matrix.png"
+                 alt="Scatter plot matrix with OLS regression lines and R² values">
+            <div class="figure-caption">
+                <strong>Figure 3.</strong> Pairwise scatter matrix with OLS regression lines and R² values.
+                The diagonal shows kernel density estimates. The positive slope in the Happiness-Antidepressants
+                cell (upper-right area) is the paradox visualized as a trend line.
+            </div>
+        </div>
+    </div>
+
+        <div class="wide-container">
+            <p>Equality and employment leave their mark on happiness that much 
+            holds. But the moment you ask what drives antidepressant use, the 
+            economic story goes quiet. Medication has virtually no relationship 
+            with how unequal a country is, and none at all with how many people 
+            are out of work. The countries that medicate most are not simply the 
+            ones where life is easiest.</p>
+
+            <p>And yet the paradox refuses to budge. Inequality explains happiness 
+            to a degree, but it does not explain medication. Unemployment barely 
+            registers. The two variables that should dissolve the paradox turn out 
+            to have almost nothing to say about it. The answer has to lie somewhere 
+            else entirely.</p>
+        </div>
+
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <!-- SECTION 5: ARCHETYPES                                                   -->
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section">
-    <div class="container">
+    <div class="wide-container">
         <h2>Three Europes</h2>
-        <p>
-            To move beyond simple correlations, we used <strong>K-Means clustering</strong> to
-            discover natural groupings among the 21 countries based on all four metrics simultaneously.
-            We evaluated K = 2 through 8 using the <strong>silhouette score</strong> (a measure of
-            how well-separated the clusters are). K = 2 scored highest (0.362) but offered too little
-            diversity between clusters; K = 3 provided the best trade-off between interpretability, cluster balance, and
-            score (0.316) (with no singleton clusters). K ≥ 5 produced meaningless one-country clusters.
-            PCA (Principal Component Analysis) then projects these three groups into three dimensions for
-            interactive visualization, capturing 88.6% of total variance.
-        </p>
+        <p>Correlations only tell you so much. To see the fuller picture, we 
+        let the data sort itself by running a clustering algorithm across all 
+        21 countries and all four metrics simultaneously. No assumptions about 
+        geography, no preconceived groupings. We simply asked the data: which 
+        countries are most alike?</p>
+
+        <p>Three distinct groups emerged. And when you see which countries land 
+        together, the geography writes itself almost perfectly onto the map of Europe.</p>
         <p>
             The clusters tell a compelling story:
         </p>
@@ -447,22 +471,14 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- SECTION 6: OVER TIME                                                    -->
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section section-alt">
-    <div class="container">
+    <div class="wide-container">
         <h2>Not a Fluke</h2>
         <p>
             A single averaged value might be a fluke. But what if we watch the paradox unfold year by year?
             The animated scatter below tracks each country from 2015 to 2020 through
-            Antidepressant Use vs. Happiness score, with bubble size encoding unemployment rate.
-            Press play and notice three trends: a slight increase in happiness across all countries,
-            an overall shift to the right (higher antidepressant use), and a slight decrease in
-            unemployment (shrinking bubbles). The paradox is growing, structural, and not momentary.
+            Antidepressant Use vs. Happiness score, with bubble size encoding unemployment rate.   
         </p>
-        <p>
-            Pay particular attention to <strong>Portugal</strong> and <strong>Spain</strong>: over the years they become outliers
-            to the paradox, ending up in the top consumer of antidepressants while
-            maintaining low happiness scores. All other countries tend to stay in their
-            area, maintaining roughly the same distances to neighbouring points.
-        </p>
+        
     </div>
     <div class="wide-container">
         <div class="figure-block">
@@ -474,6 +490,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 Notice how Portugal drifts right (rising antidepressant use) without gaining too much happiness for its final DDD value.
             </div>
         </div>
+        <p>
+            You can notice three trends: a slight increase in happiness across all countries,
+            an overall shift to the right (higher antidepressant use), and a slight decrease in
+            unemployment (shrinking bubbles). The paradox is growing, structural, and not momentary.
+            Pay particular attention to <strong>Portugal</strong> and <strong>Spain</strong>: over the years they become outliers
+            to the paradox, ending up in the top consumer of antidepressants while
+            maintaining low happiness scores. All other countries tend to stay in their
+            area, maintaining roughly the same distances to neighbouring points.
+        </p>
+
+        <p> 
+            And the rankings tell the same story even more starkly. While 
+            unemployment shifted, economies wobbled, and the world changed around 
+            them, the order at the top of the happiness table barely moved. Finland, 
+            Denmark, Iceland trade places with each other year after year, 
+            but they never leave. The blue lines hold.
+        </p>
+
     </div>
     <div class="wide-container">
         <div class="figure-block">
@@ -486,6 +520,16 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </div>
+
+        <div class="wide-container">
+            <p>
+                But stability looks different depending on where you stand. 
+                Zoom out to the map of Europe and the modest changes of the last 
+                five years reveal a quiet shift the countries that gained the most 
+                ground were not the ones already at the top.
+            </p> 
+        </div>
+
     <div class="wide-container">
         <div class="figure-block">
             <iframe class="map-frame" src="visualizations/happiness_change_map.html"
@@ -497,13 +541,25 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </div>
+
+        <div class="wide-container">
+            <p>
+                Hungary, Slovenia, and 
+                the Baltic states nudged upward, closing the gap slightly from below. 
+                Portugal, despite its stubbornly high antidepressant use, also managed 
+                a small gain. The Nordic nations barely moved because they had nowhere 
+                much to go. The ceiling, it seems, is high but it is not unreachable.
+            </p> 
+        </div>
+
+                
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <!-- SECTION 7: THE TWIST — ESS                                              -->
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section">
-    <div class="container">
+    <div class="wide-container">
         <h2>The Explanation: It's About Trust</h2>
         <p>
             We've established the paradox and shown it's partially true, persistent throughout the years, and has some geographic patterns. But we
@@ -539,10 +595,13 @@ document.addEventListener('DOMContentLoaded', function() {
             health system, and your society not to judge you, you're far more likely to seek help
             for depression or mental health issues, and that help often comes in the form of antidepressants. The high
             prescription rates in the cluster 0 don't signify artificial happiness; they signal
-            <strong>a society that takes mental health as seriously as physical health</strong> -  Sweden, Denmark, and Finland rank as the three most responsive European countries in mental healthcare <a class="cite" href="#ref-8">[8]</a>, the same countries that top our happiness and antidepressant charts. <br>
-            
-            In Portugal, the outlier with high antidepressant use but low happiness, the trust levels are much lower, 
-            suggesting that medication may be an automatic response to untreated mental health issues rather than a sign of awareness and care.
+            <strong>a society that takes mental health as seriously as physical health</strong>. Sweden, Denmark, and Finland rank as the three most responsive European countries in mental healthcare <a class="cite" href="#ref-8">[8]</a>, the same countries that top our happiness and antidepressant charts. <br>
+        </p>
+        <p> Portugal tells a different story. The outlier with high antidepressant use but low 
+            happiness also shows much lower trust levels, suggesting that medication there may be 
+            an automatic response to untreated mental health issues rather than a sign of awareness 
+            and care. When the system is not trusted, pills can become a substitute for support 
+            rather than part of it.
         </p>
     </div>
     <div class="wide-container">
@@ -559,7 +618,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="wide-container">
         <h3>The Cluster Profiles Confirm It</h3>
         <p>
             The radar chart below shows how each cluster scores across all six raw ESS variables
@@ -588,7 +647,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="wide-container">
         <div class="callout callout-critical">
             <strong>The resolution:</strong> The “Paradox of Happiness” is not always true, but it is
             often satisfied. Antidepressant usage is not the only measure to indicate a country's
@@ -606,7 +665,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- SECTION 8: EXPLORATION                                                  -->
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section section-alt">
-    <div class="container">
+    <div class="wide-container">
         <h2>Now It's Your Turn</h2>
         <p>
             We've told our story, now it's your turn to explore. The interactive bubble chart below
@@ -640,7 +699,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- REFERENCES                                                              -->
 <!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="section">
-    <div class="container">
+    <div class="wide-container">
         <div class="references">
             <h3>Data Sources &amp; References</h3>
             <ol>
